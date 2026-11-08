@@ -1,0 +1,1234 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>虎扑nba社区-球队讨论_比赛复盘_球员评分</title>
+  <meta name="description" content="虎扑nba社区是NBA球迷聚集地，提供球队讨论、比赛复盘、球员评分、交易流言与选秀分析。适合想了解赛后热帖、球员表现对比和季后赛走势的球迷。">
+  <meta name="keywords" content="球队讨论区,比赛复盘,球员评分,交易流言,选秀分析">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23c8102e'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-weight='bold'%3EH%3C/text%3E%3C/svg%3E">
+  <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+  <style>
+    :root {
+      --brand: #c8102e;
+      --brand-dark: #9e0b24;
+      --brand-light: #fbeaec;
+      --ink: #1a1a1a;
+      --ink-soft: #4a4a4a;
+      --muted: #767676;
+      --line: #e6e6e6;
+      --bg: #f7f5f2;
+      --panel: #ffffff;
+      --panel-alt: #fdfcf9;
+      --gold: #b8860b;
+      --navy: #1d3557;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 2px 12px rgba(0,0,0,.06);
+      --gap: 22px;
+      --sticky-h: 118px;
+      font-size: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--sticky-h); }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
+    img, svg { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; }
+
+    /* 吸顶公告条 + 页头 */
+    .sticky-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 0 var(--line);
+    }
+    .announce-bar {
+      background: var(--navy);
+      color: #fff;
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      padding: 8px 0;
+    }
+    .announce-bar .container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .announce-bar .tag {
+      background: var(--brand);
+      padding: 1px 8px;
+      border-radius: 3px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .announce-bar a { color: #ffd9df; text-decoration: underline; text-underline-offset: 3px; }
+    .announce-bar a:hover { color: #fff; }
+
+    .site-header {
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+    }
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.3rem;
+      letter-spacing: -0.04em;
+      box-shadow: 0 2px 6px rgba(200,16,46,.35);
+    }
+    .brand-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      color: var(--brand);
+      white-space: nowrap;
+    }
+    .header-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    .header-nav a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    .header-nav a:hover, .header-nav a:focus-visible {
+      background: var(--brand-light);
+      color: var(--brand-dark);
+    }
+    .header-search {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f3f1ed;
+      border-radius: 20px;
+      padding: 4px 12px;
+      flex-shrink: 0;
+    }
+    .header-search input {
+      border: none;
+      background: transparent;
+      font: inherit;
+      font-size: 0.85rem;
+      width: 150px;
+      outline: none;
+      color: var(--ink);
+    }
+    .header-search input::placeholder { color: #a09e99; }
+    .header-search button {
+      border: none;
+      background: transparent;
+      color: var(--brand);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    /* 容器 & 首屏 */
+    .container {
+      width: 100%;
+      max-width: 1380px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #fdf6f0 0%, #f0e9e0 100%);
+      border-bottom: 1px solid var(--line);
+      padding: 34px 0 30px;
+    }
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      max-width: 540px;
+      margin-bottom: 20px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 20px;
+      border-radius: 28px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      transition: background .15s, border-color .15s, color .15s;
+    }
+    .btn-primary {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
+    .btn-primary:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+    .btn-ghost {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .btn-ghost:hover { border-color: var(--brand); color: var(--brand); }
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-visual svg {
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+    }
+
+    /* 三栏主布局 */
+    .layout-3col {
+      display: grid;
+      grid-template-columns: 178px minmax(0, 1fr) 252px;
+      gap: var(--gap);
+      align-items: start;
+      padding-top: 28px;
+      padding-bottom: 40px;
+    }
+
+    /* 左栏 */
+    .col-left {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: sticky;
+      top: calc(var(--sticky-h) + 16px);
+      align-self: start;
+    }
+    .side-block {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 12px;
+      box-shadow: var(--shadow);
+    }
+    .side-block h2 {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 700;
+      padding-left: 4px;
+    }
+    .channel-nav { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .channel-nav a {
+      display: block;
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      color: var(--ink-soft);
+      transition: background .12s, color .12s;
+    }
+    .channel-nav a:hover { background: var(--brand-light); color: var(--brand-dark); }
+    .tag-index { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag-index a {
+      font-size: 0.76rem;
+      padding: 3px 8px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      color: var(--ink-soft);
+      background: var(--panel-alt);
+      transition: border-color .12s, color .12s;
+      white-space: nowrap;
+    }
+    .tag-index a:hover { border-color: var(--brand); color: var(--brand); }
+
+    /* 中栏 */
+    .col-main {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      min-width: 0;
+    }
+    .section-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px 22px 24px;
+      box-shadow: var(--shadow);
+    }
+    .section-card h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-card h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 20px;
+      background: var(--brand);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .section-sub {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+      margin-left: 12px;
+    }
+
+    /* 内容简介 */
+    .intro-text p { margin-bottom: 12px; font-size: 0.94rem; color: var(--ink-soft); }
+    .intro-text p:last-child { margin-bottom: 0; }
+    .intro-text strong { color: var(--ink); font-weight: 700; }
+
+    /* 热门推荐卡片 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .content-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 14px 14px 12px;
+      background: var(--panel-alt);
+      transition: border-color .15s, box-shadow .15s;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .content-card:hover { border-color: #d0c8bc; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+    .content-card .card-title {
+      font-weight: 700;
+      font-size: 0.94rem;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+    .content-card .card-title a:hover { color: var(--brand); }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .card-tags span {
+      font-size: 0.68rem;
+      background: #f0ece6;
+      color: #5c5a56;
+      padding: 2px 7px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .card-tags span.hot { background: #fde8e8; color: #b3261e; }
+    .card-excerpt {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: #999;
+      margin-top: 2px;
+      gap: 6px;
+    }
+    .card-meta .score { color: var(--gold); font-weight: 700; }
+
+    /* 最新动态列表 */
+    .update-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .update-list li {
+      display: flex;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid #f0ece6;
+      font-size: 0.9rem;
+      align-items: baseline;
+    }
+    .update-list li:last-child { border-bottom: none; }
+    .update-list .u-title {
+      font-weight: 600;
+      color: var(--ink);
+      flex-shrink: 0;
+      max-width: 210px;
+    }
+    .update-list .u-title a:hover { color: var(--brand); }
+    .update-list .u-summary { color: var(--muted); font-size: 0.83rem; }
+
+    /* 分类入口 */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+    }
+    .cat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--panel-alt);
+      transition: border-color .15s, background .15s;
+    }
+    .cat-item:hover { border-color: var(--brand); background: #fff; }
+    .cat-item strong { font-size: 0.92rem; color: var(--ink); }
+    .cat-item span { font-size: 0.75rem; color: var(--muted); }
+
+    /* 深度解析 */
+    .deep-dive h3 {
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin: 18px 0 8px;
+      color: var(--ink);
+    }
+    .deep-dive h3:first-of-type { margin-top: 0; }
+    .deep-dive p { font-size: 0.92rem; color: var(--ink-soft); margin-bottom: 10px; line-height: 1.7; }
+    .deep-dive ul { margin: 6px 0 12px 20px; font-size: 0.9rem; color: var(--ink-soft); }
+    .deep-dive li { margin-bottom: 4px; }
+    .deep-dive strong { color: var(--ink); }
+
+    /* 体验指南 */
+    .guide-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      counter-reset: step;
+    }
+    .guide-step {
+      position: relative;
+      padding: 14px 14px 12px 40px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--panel-alt);
+      font-size: 0.86rem;
+      color: var(--ink-soft);
+    }
+    .guide-step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 20px;
+      height: 20px;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .guide-step strong { display: block; color: var(--ink); margin-bottom: 2px; font-size: 0.9rem; }
+
+    /* FAQ */
+    .faq-list details {
+      border-bottom: 1px solid #f0ece6;
+      padding: 10px 0;
+    }
+    .faq-list details:first-of-type { padding-top: 0; }
+    .faq-list summary {
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::before {
+      content: '+';
+      color: var(--brand);
+      font-weight: 800;
+      font-size: 1.1rem;
+      width: 18px;
+      flex-shrink: 0;
+    }
+    .faq-list details[open] summary::before { content: '−'; }
+    .faq-list .faq-answer {
+      padding: 8px 0 2px 26px;
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+    }
+
+    /* 用户评论 */
+    .comment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .comment-item {
+      background: var(--panel-alt);
+      border: 1px solid #f0ece6;
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 0.84rem;
+      color: var(--ink-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .comment-item .c-user {
+      font-weight: 700;
+      font-size: 0.78rem;
+      color: var(--brand);
+    }
+
+    /* 相关资讯 */
+    .news-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .news-list li {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f0ece6;
+    }
+    .news-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .news-list .n-title { font-weight: 600; font-size: 0.92rem; color: var(--ink); }
+    .news-list .n-title a:hover { color: var(--brand); }
+    .news-list .n-meta { font-size: 0.75rem; color: #a09e99; }
+    .news-list .n-summary { font-size: 0.84rem; color: var(--muted); }
+
+    /* 相关推荐标签 */
+    .related-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .related-tags a {
+      font-size: 0.82rem;
+      padding: 5px 14px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      color: var(--ink-soft);
+      background: var(--panel-alt);
+      transition: border-color .15s, color .15s;
+    }
+    .related-tags a:hover { border-color: var(--brand); color: var(--brand); }
+
+    /* 时间线/趋势补充 */
+    .trend-timeline {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid #e6e0d8;
+    }
+    .trend-timeline li {
+      position: relative;
+      padding: 0 0 16px 16px;
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+    }
+    .trend-timeline li::before {
+      content: '';
+      position: absolute;
+      left: -23px;
+      top: 5px;
+      width: 10px;
+      height: 10px;
+      background: var(--brand);
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px var(--brand);
+    }
+    .trend-timeline li strong { color: var(--ink); display: block; font-size: 0.9rem; }
+    .trend-timeline li:last-child { padding-bottom: 0; }
+
+    /* 右栏 */
+    .col-right {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: sticky;
+      top: calc(var(--sticky-h) + 16px);
+      align-self: start;
+    }
+    .toc-block {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px 14px;
+      box-shadow: var(--shadow);
+    }
+    .toc-block h2 {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 1px; }
+    .toc-list a {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      padding: 4px 8px;
+      border-radius: 5px;
+      border-left: 2px solid transparent;
+      transition: background .12s, border-color .12s, color .12s;
+    }
+    .toc-list a:hover { background: #faf6f0; border-left-color: var(--brand); color: var(--brand-dark); }
+    .hot-list { list-style: none; display: flex; flex-direction: column; gap: 8px; counter-reset: hot; }
+    .hot-list li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.86rem;
+      align-items: baseline;
+      counter-increment: hot;
+    }
+    .hot-list li::before {
+      content: counter(hot);
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: #fff;
+      background: var(--brand);
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+    .hot-list li:nth-child(n+4)::before { background: #b0a89e; }
+    .hot-list a { color: var(--ink-soft); font-weight: 500; }
+    .hot-list a:hover { color: var(--brand); }
+    .extend-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .extend-list a {
+      font-size: 0.84rem;
+      color: var(--ink-soft);
+      padding: 4px 0;
+      border-bottom: 1px dashed #eee9e2;
+      display: block;
+    }
+    .extend-list a:last-child { border-bottom: none; }
+    .extend-list a:hover { color: var(--brand); }
+
+    /* 页尾 */
+    .site-footer {
+      background: #1f1c18;
+      color: #c9c4bc;
+      padding: 36px 0 22px;
+      font-size: 0.85rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
+      gap: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #3d3832;
+    }
+    .footer-brand .f-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .footer-brand .f-logo .brand-logo { width: 34px; height: 34px; font-size: 1rem; }
+    .footer-brand .f-name { font-weight: 800; font-size: 1.1rem; color: #fff; }
+    .footer-brand p { font-size: 0.82rem; line-height: 1.6; max-width: 280px; }
+    .footer-col h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #a09e99;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 0.84rem;
+      color: #c9c4bc;
+      padding: 2px 0;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: #8a857e;
+    }
+
+    /* 移动端 */
+    @media (max-width: 1080px) {
+      .layout-3col { grid-template-columns: 1fr; }
+      .col-left, .col-right { position: static; }
+      .col-left .side-block:first-child { display: none; }
+      .header-search input { width: 100px; }
+      .hero .container { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+      .hero-visual { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
+      .container { padding-left: 14px; padding-right: 14px; }
+      .hero h1 { font-size: 1.7rem; }
+      .header-nav { gap: 4px; }
+      .header-nav a { font-size: 0.8rem; padding: 3px 6px; }
+      .brand-name { font-size: 1.1rem; }
+      .brand-logo { width: 36px; height: 36px; font-size: 1rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      .cat-grid { grid-template-columns: 1fr 1fr; }
+      .comment-grid { grid-template-columns: 1fr; }
+      .guide-steps { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 18px; }
+      .update-list li { flex-direction: column; gap: 2px; }
+      .update-list .u-title { max-width: 100%; }
+      .section-card { padding: 16px 14px; }
+      .header-search { display: none; }
+      .toc-block, .hot-block, .extend-block { margin-top: 0; }
+    }
+    @media (max-width: 400px) {
+      .cat-grid { grid-template-columns: 1fr; }
+      .brand-name { font-size: 0.98rem; }
+    }
+    .no-results { display: none; padding: 16px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+    .search-hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- 吸顶公告条 + 页头 -->
+  <div class="sticky-wrap">
+    <div class="announce-bar">
+      <div class="container">
+        <span class="tag">公告</span>
+        <span>季后赛球队讨论热度飙升，参与「赛后复盘」话题赢取社区勋章。</span>
+        <a href="/#section-hot">查看详情 →</a>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/#hero" aria-label="虎扑nba社区首页">
+          <span class="brand-logo" aria-hidden="true">H</span>
+          <span class="brand-name">虎扑nba社区</span>
+        </a>
+        <nav class="header-nav" aria-label="主题导航">
+          <a href="/#section-hot">球队热帖</a>
+          <a href="/#section-updates">比赛复盘</a>
+          <a href="/#section-categories">球员评分</a>
+          <a href="/#section-deep">交易流言</a>
+          <a href="/#section-faq">选秀分析</a>
+          <a href="/#section-news">季后赛</a>
+        </nav>
+        <form class="header-search" role="search" onsubmit="return false;">
+          <label for="site-search" style="position:absolute;width:1px;height:1px;overflow:hidden;">搜索</label>
+          <input id="site-search" type="search" placeholder="搜球队 / 球员 / 话题" autocomplete="off">
+          <button type="submit" aria-label="搜索按钮">搜索</button>
+        </form>
+      </div>
+    </header>
+  </div>
+
+  <!-- 首屏 -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div>
+        <h1>虎扑nba社区</h1>
+        <p class="hero-desc">聚焦NBA球队讨论、比赛复盘与球员评分。每日更新赛后热帖、交易流言和选秀分析，适合想快速了解联盟动态、对比球员表现的球迷。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/#section-hot">进入热门讨论</a>
+          <a class="btn btn-ghost" href="/#section-updates">查看最新复盘</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="篮球与讨论气泡图形">
+          <circle cx="150" cy="150" r="90" fill="#e8ddd2"/>
+          <circle cx="150" cy="150" r="70" fill="#c8102e"/>
+          <path d="M80 150 Q150 100 220 150" stroke="#fff" stroke-width="3" fill="none"/>
+          <path d="M150 80 Q120 150 150 220" stroke="#fff" stroke-width="3" fill="none"/>
+          <path d="M100 100 Q150 130 200 100" stroke="#fff" stroke-width="2" fill="none"/>
+          <path d="M100 200 Q150 170 200 200" stroke="#fff" stroke-width="2" fill="none"/>
+          <rect x="180" y="40" width="90" height="42" rx="12" fill="#1d3557"/>
+          <polygon points="200,82 210,96 220,82" fill="#1d3557"/>
+          <text x="225" y="66" font-size="16" text-anchor="middle" fill="#fff" font-weight="bold">NBA</text>
+          <rect x="30" y="170" width="80" height="36" rx="10" fill="#b8860b"/>
+          <polygon points="80,206 90,220 100,206" fill="#b8860b"/>
+          <text x="70" y="193" font-size="14" text-anchor="middle" fill="#fff" font-weight="bold">复盘</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三栏主内容 -->
+  <div class="container layout-3col">
+
+    <!-- 左栏 -->
+    <aside class="col-left" aria-label="频道与标签导航">
+      <div class="side-block">
+        <h2>频道导航</h2>
+        <ul class="channel-nav">
+          <li><a href="/#section-hot">球队热帖</a></li>
+          <li><a href="/#section-updates">比赛复盘</a></li>
+          <li><a href="/#section-categories">球员评分</a></li>
+          <li><a href="/#section-deep">交易流言</a></li>
+          <li><a href="/#section-guide">选秀分析</a></li>
+          <li><a href="/#section-faq">球迷问答</a></li>
+          <li><a href="/#section-comments">社区评论</a></li>
+          <li><a href="/#section-news">季后赛资讯</a></li>
+        </ul>
+      </div>
+      <div class="side-block">
+        <h2>热门标签</h2>
+        <div class="tag-index">
+          <a href="/#section-hot">湖人</a>
+          <a href="/#section-hot">勇士</a>
+          <a href="/#section-updates">凯尔特人</a>
+          <a href="/#section-deep">交易截止日</a>
+          <a href="/#section-guide">选秀预测</a>
+          <a href="/#section-faq">MVP</a>
+          <a href="/#section-comments">季后赛</a>
+          <a href="/#section-news">伤病报告</a>
+          <a href="/#section-deep">薪资空间</a>
+          <a href="/#section-hot">新秀观察</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 中栏 -->
+    <main class="col-main">
+
+      <!-- 1. 内容简介 -->
+      <section class="section-card" id="section-intro">
+        <h2>关于虎扑nba社区</h2>
+        <div class="intro-text">
+          <p><strong>虎扑nba社区</strong>是篮球迷交流NBA赛事、球队和球员的讨论空间。这里汇集赛后复盘、球员评分、交易流言与选秀分析，帮助你在信息过载的赛季中快速抓住重点。无论你是想找一支球队的深度讨论，还是对比两位球星的表现，社区都提供结构化的内容入口。</p>
+          <p>在球队讨论区，你可以按东西部、分区或具体球队浏览热帖。比赛复盘板块通常会在终场后两小时内更新，包含关键回合拆解、数据亮点和球迷投票。球员评分则围绕当场表现给出分项参考，方便你判断谁在攻防两端真正影响了比赛。</p>
+          <p>如果你更关注长期建队，交易流言和选秀分析会是不错的切入点。前者汇总薪资匹配、球队动机与记者报道，后者覆盖热门新秀的体测、大学数据和球探报告。社区内容以讨论帖和短评为主，适合通勤、午休或睡前快速浏览，也适合在比赛结束后对照复盘深入阅读。</p>
+          <p>虎扑nba社区的内容更新跟随NBA赛程节奏：常规赛期间每日有比赛复盘和球员评分，交易截止日前流言密度上升，选秀前后则集中出现新秀分析。你可以通过频道导航、左侧标签或页内目录快速定位感兴趣的话题。</p>
+        </div>
+      </section>
+
+      <!-- 2. 热门内容推荐 -->
+      <section class="section-card" id="section-hot">
+        <h2>热门球队讨论与赛后热帖</h2>
+        <p class="section-sub">根据近两日社区互动热度和回帖数量整理</p>
+        <div class="card-grid">
+          <article class="content-card">
+            <div class="card-title"><a href="/#section-hot">湖人vs勇士裁判报告解读：最后两分钟三次漏判</a></div>
+            <div class="card-tags"><span>湖人</span><span>勇士</span><span class="hot">裁判报告</span></div>
+            <p class="card-excerpt">逐帧拆解最后两分钟裁判报告，对比实际吹罚与报告结论，重点分析禁区接触尺度。</p>
+            <div class="card-meta"><span>🔥 1.2万热度</span><span class="score">9.1分</span></div>
+          </article>
+          <article class="content-card">
+            <div class="card-title"><a href="/#section-hot">凯尔特人五外阵容空间效率：常规赛数据全解剖</a></div>
+            <div class="card-tags"><span>凯尔特人</span><span>五外阵容</span><span>空间效率</span></div>
+            <p class="card-excerpt">统计凯尔特人五外阵容每百回合得分与三分出手占比，对比联盟平均水准，找出拉开空间的关键。</p>
+            <div class="card-meta"><span>🔥 9800热度</span><span class="score">8.8分</span></div>
+          </article>
+          <article class="content-card">
+            <div class="card-title"><a href="/#section-hot">雷霆新秀切特护框数据：对手篮下命中率下降8%</a></div>
+            <div class="card-tags"><span>雷霆</span><span>切特</span><span>护框</span></div>
+            <p class="card-excerpt">整理切特在场与不在场时对手篮下命中率变化，结合录像看协防时机与垂直起跳习惯。</p>
+            <div class="card-meta"><span>🔥 7600热度</span><span class="score">8.5分</span></div>
+          </article>
+          <article class="content-card">
+            <div class="card-title"><a href="/#section-hot">独行侠东契奇挡拆后传球选择：三种防守应对拆解</a></div>
+            <div class="card-tags"><span>独行侠</span><span>东契奇</span><span>挡拆</span></div>
+            <p class="card-excerpt">面对夹击、换防和沉退三种防守策略，东契奇的出球线路与失误率对比，附回合片段说明。</p>
+            <div class="card-meta"><span>🔥 6900热度</span><span class="score">8.6分</span></div>
+          </article>
+          <article class="content-card">
+            <div class="card-title"><a href="/#section-hot">尼克斯布伦森季后赛得分分布：中距离与篮下比例</a></div>
+            <div class="card-tags"><span>尼克斯</span><span>布伦森</span><span>得分分布</span></div>
+            <p class="card-excerpt">统计布伦森季后赛出手热图，中距离占比与篮下终结效率，对比常规赛变化趋势。</p>
+            <div class="card-meta"><span>🔥 5400热度</span><span class="score">8.3分</span></div>
+          </article>
+          <article class="content-card">
+            <div class="card-title"><a href="/#section-hot">掘金约基奇高位策应：无球掩护后的二次处理</a></div>
+            <div class="card-tags"><span>掘金</span><span>约基奇</span><span>高位策应</span></div>
+            <p class="card-excerpt">约基奇在高位接球后，无球掩护质量如何影响其传球选择，附三个典型回合的跑位图。</p>
+            <div class="card-meta"><span>🔥 5100热度</span><span class="score">8.9分</span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 3. 最新更新 -->
+      <section class="section-card" id="section-updates">
+        <h2>最新比赛复盘与动态</h2>
+        <p class="section-sub">按更新时间倒序，覆盖今日与昨日焦点战</p>
+        <ul class="update-list">
+          <li><span class="u-title"><a href="/#section-updates">森林狼vs掘金G3复盘</a></span><span class="u-summary">戈贝尔换防约基奇效果不佳，掘金第三节利用错位打出18-4攻击波。</span></li>
+          <li><span class="u-title"><a href="/#section-updates">凯尔特人vs骑士G2复盘</a></span><span class="u-summary">绿军双探花合计三分15中2，但怀特和霍勒迪合计贡献9记三分稳住局面。</span></li>
+          <li><span class="u-title"><a href="/#section-updates">独行侠vs雷霆G4复盘</a></span><span class="u-summary">东契奇末节连续点名切特，独行侠用五小阵容完成15分逆转。</span></li>
+          <li><span class="u-title"><a href="/#section-updates">步行者vs尼克斯G3复盘</a></span><span class="u-summary">步行者加快转换节奏，尼克斯首发体能下降，末节被轰出32-19。</span></li>
+          <li><span class="u-title"><a href="/#section-updates">湖人选帅进展</a></span><span class="u-summary">多位候选人与管理层会面，球队倾向于有球员发展经验的教练。</span></li>
+          <li><span class="u-title"><a href="/#section-updates">勇士休赛期薪资空间</a></span><span class="u-summary">若克莱离队，勇士可释放约3000万空间，但硬帽限制操作灵活性。</span></li>
+          <li><span class="u-title"><a href="/#section-updates">雄鹿字母哥伤病更新</a></span><span class="u-summary">字母哥恢复进展良好，但球队对其季后赛复出持谨慎态度。</span></li>
+          <li><span class="u-title"><a href="/#section-updates">太阳解雇沃格尔</a></span><span class="u-summary">太阳管理层决定更换主教练，新帅需解决三巨头球权分配问题。</span></li>
+          <li><span class="u-title"><a href="/#section-updates">76人休赛期引援目标</a></span><span class="u-summary">球队计划围绕马克西和恩比德补充侧翼防守者与替补控卫。</span></li>
+        </ul>
+      </section>
+
+      <!-- 4. 分类入口 -->
+      <section class="section-card" id="section-categories">
+        <h2>按类别浏览讨论</h2>
+        <p class="section-sub">选择你关注的讨论方向</p>
+        <div class="cat-grid">
+          <a class="cat-item" href="/#section-hot"><strong>球队讨论区</strong><span>30支球队热帖聚合</span></a>
+          <a class="cat-item" href="/#section-updates"><strong>比赛复盘</strong><span>关键回合与数据拆解</span></a>
+          <a class="cat-item" href="/#section-deep"><strong>球员评分</strong><span>当场表现分项参考</span></a>
+          <a class="cat-item" href="/#section-deep"><strong>交易流言</strong><span>薪资匹配与记者报道</span></a>
+          <a class="cat-item" href="/#section-guide"><strong>选秀分析</strong><span>新秀体测与球探报告</span></a>
+          <a class="cat-item" href="/#section-faq"><strong>球迷问答</strong><span>常见规则与数据疑问</span></a>
+          <a class="cat-item" href="/#section-news"><strong>季后赛专区</strong><span>对阵分析与晋级形势</span></a>
+          <a class="cat-item" href="/#section-comments"><strong>社区热议</strong><span>球迷观点与短评</span></a>
+        </div>
+      </section>
+
+      <!-- 5. 深度解析 -->
+      <section class="section-card deep-dive" id="section-deep">
+        <h2>深度解析：如何读懂比赛复盘与球员评分</h2>
+        <p>在虎扑nba社区，比赛复盘和球员评分是两大核心内容。复盘不只是描述谁得了多少分，而是拆解关键回合的战术选择、对位优势和临场调整。球员评分则把表现拆成进攻、防守、篮板、组织等维度，方便横向对比。</p>
+
+        <h3>复盘的核心：找到改变比赛节奏的回合</h3>
+        <p>一场比赛有近百个回合，复盘通常聚焦第三节末到第四节初的衔接段，或者双方主力回归后的第一次攻防。这些回合往往决定比赛走向。</p>
+        <ul>
+          <li><strong>防守策略变化：</strong>从人盯人换成联防、从沉退换成夹击，都会改变持球人的出球选择。</li>
+          <li><strong>轮换调整：</strong>替补中锋提前上场、侧翼对位换人，可能带来篮板或空间上的连锁反应。</li>
+          <li><strong>犯规与暂停：</strong>核心球员的犯规麻烦会迫使教练提前调整轮换，暂停后的ATO战术执行质量也值得关注。</li>
+        </ul>
+        <p>阅读复盘时，可以先看标题里的结论，再对照回合片段验证。社区里不少复盘帖会附上数据截图和战术板简图，即使不看直播也能抓住重点。</p>
+
+        <h3>球员评分的参考价值与局限</h3>
+        <p>球员评分通常围绕当场比赛展开，分项包括得分效率、防守对位难度、篮板卡位和失误控制。高分不一定代表完美，低分也可能因为对位难度高而被低估。</p>
+        <ul>
+          <li><strong>进攻端：</strong>真实命中率、助攻失误比、挡拆后得分效率是常见参考。</li>
+          <li><strong>防守端：</strong>对位球员命中率变化、护框次数、换防弹性比抢断盖帽更能反映实际贡献。</li>
+          <li><strong>情境因素：</strong>垃圾时间数据、伤病影响和背靠背体能状况需要单独标注。</li>
+        </ul>
+        <p>虎扑nba社区的评分帖通常会在赛后两小时内发布，结合球迷投票和楼主观察。你可以把评分当作快速筛选比赛亮点的工具，再深入阅读具体回合分析。</p>
+
+        <h3>交易流言与选秀分析的阅读方法</h3>
+        <p>交易流言板块会区分“记者报道”“球队动作”和“球迷设想”，避免把推测当成事实。阅读时关注薪资匹配规则、球队硬帽状态和选秀权归属，能更快判断流言可行性。选秀分析则侧重体测数据、大学比赛角色和球探报告中的优缺点描述，适合在选秀大会前建立初步认知。</p>
+        <p>无论是复盘、评分还是流言，虎扑nba社区的内容都强调可讨论性。你可以在帖子下追问具体回合，也可以引用数据提出不同看法。社区的价值在于把比赛细节拆开，让不同视角的球迷都能找到切入点。</p>
+      </section>
+
+      <!-- 6. 体验指南 -->
+      <section class="section-card" id="section-guide">
+        <h2>浏览与参与指南</h2>
+        <p class="section-sub">从频道到讨论，快速找到你关心的内容</p>
+        <div class="guide-steps">
+          <div class="guide-step"><strong>选择频道</strong>通过左侧频道导航或页头菜单进入球队讨论、比赛复盘或球员评分。</div>
+          <div class="guide-step"><strong>使用标签</strong>左侧热门标签可快速筛选湖人、勇士、凯尔特人等球队内容。</div>
+          <div class="guide-step"><strong>查看目录</strong>右栏页内目录帮助你在长页面中跳转到深度解析或FAQ。</div>
+          <div class="guide-step"><strong>搜索内容</strong>页头搜索框支持本地内容查找，输入球队或球员名即可定位。</div>
+          <div class="guide-step"><strong>阅读复盘</strong>比赛复盘通常在终场后两小时内更新，可对照数据截图阅读。</div>
+          <div class="guide-step"><strong>参与评论</strong>在评论板块浏览社区观点，或到对应帖子下参与讨论。</div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="section-card" id="section-faq">
+        <h2>球迷常见问题</h2>
+        <div class="faq-list">
+          <details>
+            <summary>虎扑nba社区的球队讨论适合哪些球迷？</summary>
+            <div class="faq-answer">适合想快速了解单支球队近况、赛后热帖和球迷观点的NBA观众。无论你关注湖人、勇士还是雷霆，都能在球队讨论区找到对应话题。</div>
+          </details>
+          <details>
+            <summary>比赛复盘一般多久更新一次？</summary>
+            <div class="faq-answer">焦点比赛通常在终场后两小时内发布复盘，非焦点场次可能合并更新。季后赛期间更新频率更高，关键战役会有多篇不同角度的复盘。</div>
+          </details>
+          <details>
+            <summary>球员评分和官方数据有什么区别？</summary>
+            <div class="faq-answer">球员评分是社区基于当场表现给出的分项参考，包含进攻、防守、篮板等维度，更强调对位难度和比赛情境，不是官方技术统计的替代。</div>
+          </details>
+          <details>
+            <summary>交易流言板块的消息可靠吗？</summary>
+            <div class="faq-answer">社区会标注消息来源，区分记者报道、球队动作和球迷设想。建议阅读时关注薪资规则和球队状态，自行判断流言可行性。</div>
+          </details>
+          <details>
+            <summary>选秀分析覆盖哪些内容？</summary>
+            <div class="faq-answer">包括热门新秀的体测数据、大学比赛角色、球探报告优缺点，以及球队选秀权归属和试训动态，适合选秀大会前建立初步认知。</div>
+          </details>
+          <details>
+            <summary>如何在社区里找到特定球员的讨论？</summary>
+            <div class="faq-answer">可以使用页头搜索框输入球员名，或点击左侧热门标签中的球队/球员标签。球员评分和比赛复盘帖通常会在标题中标注关键球员。</div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8. 用户评论 -->
+      <section class="section-card" id="section-comments">
+        <h2>社区球迷短评</h2>
+        <p class="section-sub">来自近期讨论帖的示例评论，展示多元观点</p>
+        <div class="comment-grid">
+          <div class="comment-item"><span class="c-user">北岸花园看台</span>凯尔特人五外阵容那篇数据很扎实，但替补衔接段还是缺一个能持球突破的人。</div>
+          <div class="comment-item"><span class="c-user">湾区老球迷</span>勇士休赛期薪资空间分析得挺清楚，硬帽确实让操作很难受。</div>
+          <div class="comment-item"><span class="c-user">达拉斯小胖</span>东契奇挡拆那篇的三种防守应对拆解很实用，尤其是夹击后的出球线路。</div>
+          <div class="comment-item"><span class="c-user">丹佛高原</span>约基奇高位策应那个回合图做得不错，无球掩护质量确实被很多人忽略。</div>
+          <div class="comment-item"><span class="c-user">纽约地铁</span>布伦森中距离比例上升感觉和季后赛防守强度有关，对抗下更依赖节奏变化。</div>
+          <div class="comment-item"><span class="c-user">俄城雷霆</span>切特护框数据下降8%有点反直觉，看了录像发现是协防后回位不及时。</div>
+          <div class="comment-item"><span class="c-user">明尼苏达冷</span>戈贝尔换防约基奇效果不好，但蹲坑又被穆雷投死，确实两难。</div>
+          <div class="comment-item"><span class="c-user">费城相信过程</span>76人引援目标那篇提到侧翼防守者，感觉补一个能防多个位置的锋线很关键。</div>
+          <div class="comment-item"><span class="c-user">菲尼克斯日落</span>太阳换帅新闻下面讨论挺多，三巨头球权分配确实不是换个教练就能解决的。</div>
+          <div class="comment-item"><span class="c-user">密尔沃基雪</span>字母哥伤病更新还是谨慎点好，强行复出风险太大。</div>
+          <div class="comment-item"><span class="c-user">洛杉矶凌晨</span>湖人选帅进展这篇信息量可以，球员发展经验对年轻阵容确实重要。</div>
+          <div class="comment-item"><span class="c-user">印第安纳小马</span>步行者加快转换节奏那场复盘很到位，尼克斯首发确实跑不动了。</div>
+          <div class="comment-item"><span class="c-user">克利夫兰摇滚</span>凯尔特人双探花三分失准还能赢，怀特和霍勒迪太稳了。</div>
+          <div class="comment-item"><span class="c-user">新奥尔良爵士</span>选秀分析能不能多出几个二轮秀的球探报告，感觉社区里讨论偏首轮。</div>
+        </div>
+      </section>
+
+      <!-- 9. 相关资讯 -->
+      <section class="section-card" id="section-news">
+        <h2>近期NBA相关资讯</h2>
+        <ul class="news-list">
+          <li>
+            <span class="n-title"><a href="/#section-news">联盟公布最佳防守阵容候选名单</a></span>
+            <span class="n-meta">2024-05-20</span>
+            <span class="n-summary">多位内线护框者和外线领防人进入候选，社区围绕换防弹性展开讨论。</span>
+          </li>
+          <li>
+            <span class="n-title"><a href="/#section-news">选秀联合试训体测数据出炉</a></span>
+            <span class="n-meta">2024-05-18</span>
+            <span class="n-summary">热门新秀的臂展、站立摸高和动态测试结果公布，影响球队选秀顺位评估。</span>
+          </li>
+          <li>
+            <span class="n-title"><a href="/#section-news">东西部决赛赛程确定</a></span>
+            <span class="n-meta">2024-05-17</span>
+            <span class="n-summary">分区决赛对阵与比赛时间公布，社区开始预热关键对位和轮换预测。</span>
+          </li>
+          <li>
+            <span class="n-title"><a href="/#section-news">多支球队表达对侧翼自由球员兴趣</a></span>
+            <span class="n-meta">2024-05-15</span>
+            <span class="n-summary">休赛期侧翼市场升温，3D球员成为多队补强重点。</span>
+          </li>
+          <li>
+            <span class="n-title"><a href="/#section-news">联盟考虑调整回放中心规则</a></span>
+            <span class="n-meta">2024-05-13</span>
+            <span class="n-summary">讨论集中在裁判报告透明度和教练挑战次数，球迷在社区展开辩论。</span>
+          </li>
+          <li>
+            <span class="n-title"><a href="/#section-news">国际球员参选人数创新高</a></span>
+            <span class="n-meta">2024-05-10</span>
+            <span class="n-summary">本届选秀国际球员比例上升，球探关注欧洲联赛年轻侧翼与内线。</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 10. 相关推荐 -->
+      <section class="section-card" id="section-related">
+        <h2>按方向探索更多讨论</h2>
+        <p class="section-sub">点击标签进入对应讨论方向</p>
+        <div class="related-tags">
+          <a href="/#section-hot">湖人休赛期补强方向</a>
+          <a href="/#section-updates">勇士克莱续约谈判</a>
+          <a href="/#section-deep">凯尔特人五外阵容</a>
+          <a href="/#section-categories">独行侠东契奇挡拆</a>
+          <a href="/#section-faq">雷霆切特护框</a>
+          <a href="/#section-news">掘金约基奇策应</a>
+          <a href="/#section-guide">2024选秀热门新秀</a>
+          <a href="/#section-comments">季后赛对阵预测</a>
+        </div>
+      </section>
+
+      <!-- 11. 趋势观察 / 时间线 -->
+      <section class="section-card" id="section-trend">
+        <h2>季后赛趋势观察</h2>
+        <p class="section-sub">按时间线梳理近期社区关注焦点</p>
+        <ul class="trend-timeline">
+          <li><strong>首轮出局球队复盘潮</strong>湖人、太阳、76人等队出局后，社区集中讨论阵容短板和休赛期操作方向。</li>
+          <li><strong>分区半决赛对位分析</strong>凯尔特人vs骑士、独行侠vs雷霆成为讨论热点，换防策略和替补深度被反复提及。</li>
+          <li><strong>选秀联合试训与模拟选秀</strong>体测数据公布后，社区模拟选秀版本更新，国际球员关注度上升。</li>
+          <li><strong>分区决赛前瞻</strong>东西部决赛对阵确定，关键对位、主场优势和伤病报告成为讨论主线。</li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- 右栏 -->
+    <aside class="col-right" aria-label="辅助阅读">
+      <div class="toc-block">
+        <h2>页内目录</h2>
+        <ul class="toc-list">
+          <li><a href="/#section-intro">关于社区</a></li>
+          <li><a href="/#section-hot">热门球队讨论</a></li>
+          <li><a href="/#section-updates">最新比赛复盘</a></li>
+          <li><a href="/#section-categories">按类别浏览</a></li>
+          <li><a href="/#section-deep">深度解析</a></li>
+          <li><a href="/#section-guide">浏览指南</a></li>
+          <li><a href="/#section-faq">球迷问答</a></li>
+          <li><a href="/#section-comments">社区短评</a></li>
+          <li><a href="/#section-news">近期资讯</a></li>
+          <li><a href="/#section-related">相关推荐</a></li>
+          <li><a href="/#section-trend">趋势观察</a></li>
+        </ul>
+      </div>
+      <div class="toc-block">
+        <h2>热门条目</h2>
+        <ol class="hot-list">
+          <li><a href="/#section-hot">湖人勇士裁判报告</a></li>
+          <li><a href="/#section-hot">凯尔特人五外空间效率</a></li>
+          <li><a href="/#section-hot">切特护框数据变化</a></li>
+          <li><a href="/#section-updates">掘金森林狼G3复盘</a></li>
+          <li><a href="/#section-deep">东契奇挡拆三种应对</a></li>
+          <li><a href="/#section-news">选秀联合试训体测</a></li>
+        </ol>
+      </div>
+      <div class="toc-block">
+        <h2>延伸阅读</h2>
+        <ul class="extend-list">
+          <li><a href="/#section-deep">球员评分分项参考说明</a></li>
+          <li><a href="/#section-guide">如何参与赛后复盘讨论</a></li>
+          <li><a href="/#section-faq">交易流言可信度判断</a></li>
+          <li><a href="/#section-news">季后赛对阵与晋级形势</a></li>
+          <li><a href="/#section-trend">近期社区关注焦点</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- 页尾 -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="f-logo">
+            <span class="brand-logo" aria-hidden="true" style="background:var(--brand);">H</span>
+            <span class="f-name">虎扑nba社区</span>
+          </div>
+          <p>专注NBA球队讨论、比赛复盘与球员评分。为球迷提供赛后热帖、交易流言和选秀分析，在通勤、午休和睡前快速了解联盟动态。</p>
+        </div>
+        <div class="footer-col">
+          <h3>内容频道</h3>
+          <a href="/#section-hot">球队热帖</a>
+          <a href="/#section-updates">比赛复盘</a>
+          <a href="/#section-categories">球员评分</a>
+          <a href="/#section-deep">交易流言</a>
+        </div>
+        <div class="footer-col">
+          <h3>讨论方向</h3>
+          <a href="/#section-guide">选秀分析</a>
+          <a href="/#section-faq">球迷问答</a>
+          <a href="/#section-comments">社区短评</a>
+          <a href="/#section-news">季后赛资讯</a>
+        </div>
+        <div class="footer-col">
+          <h3>快速入口</h3>
+          <a href="/#section-intro">关于社区</a>
+          <a href="/#section-related">相关推荐</a>
+          <a href="/#section-trend">趋势观察</a>
+          <a href="/#hero">返回顶部</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 虎扑nba社区 · 球迷讨论示例站</span>
+        <span>部分内容为示例数据，仅用于展示页面结构</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // 本地搜索：在页面可见正文中查找并隐藏不匹配的卡片/列表项
+      const input = document.getElementById('site-search');
+      const form = input ? input.closest('form') : null;
+      if (!input) return;
+
+      const searchable = document.querySelectorAll('.content-card, .update-list li, .cat-item, .comment-item, .news-list li, .related-tags a, .faq-list details, .toc-block, .hot-list li, .extend-list a');
+
+      function doSearch() {
+        const q = input.value.trim().toLowerCase();
+        let anyVisible = false;
+        searchable.forEach(el => {
+          if (!q) {
+            el.classList.remove('search-hidden');
+            anyVisible = true;
+            return;
+          }
+          const text = el.textContent.toLowerCase();
+          if (text.includes(q)) {
+            el.classList.remove('search-hidden');
+            anyVisible = true;
+          } else {
+            el.classList.add('search-hidden');
+          }
+        });
+        // 无结果提示
+        let noResults = document.getElementById('search-no-results');
+        if (!noResults) {
+          noResults = document.createElement('p');
+          noResults.id = 'search-no-results';
+          noResults.className = 'no-results';
+          noResults.textContent = '没有找到相关内容，试试其他球队或球员名。';
+          const main = document.querySelector('.col-main');
+          if (main) main.prepend(noResults);
+        }
+        noResults.style.display = (q && !anyVisible) ? 'block' : 'none';
+      }
+
+      input.addEventListener('input', doSearch);
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          doSearch();
+        });
+      }
+    })();
+  </script>
+</body>
+  </html>
