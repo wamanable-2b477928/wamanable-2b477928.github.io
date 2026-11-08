@@ -1,0 +1,1390 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>91免费版官网入口-免费版功能解析_官方入口使用指南_版本对比选择</title>
+  <meta name="description" content="91免费版官网入口页面提供免费版功能解析、官方入口路径与版本对比，帮助用户了解免费版适用场景、功能限制和升级选择，适合初次接触或正在犹豫版本的用户参考。">
+  <meta name="keywords" content="免费版功能解析,官方入口路径,版本对比,适用场景,升级选择">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f2b3d'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%23f0b429' font-family='sans-serif'%3E91%3C/text%3E%3C/svg%3E">
+  <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+  <style>
+    /* ---------- 设计变量 ---------- */
+    :root {
+      --bg: #f4f7fa;
+      --panel: #ffffff;
+      --ink: #1a2b3c;
+      --ink-soft: #3e5366;
+      --muted: #62778a;
+      --line: #d8e2ea;
+      --brand: #0f2b3d;
+      --brand-soft: #e8eef4;
+      --accent: #c47b1f;
+      --accent-soft: #fdf3e3;
+      --teal: #1f6e6b;
+      --teal-soft: #e2f0ef;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow: 0 2px 12px rgba(15, 43, 61, 0.06);
+      --font: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      --header-h: 60px;
+      --notice-h: 40px;
+      --sticky-total: calc(var(--notice-h) + var(--header-h));
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 锚点滚动偏移，包含公告条+页头 */
+    section, #main-content, [id] {
+      scroll-margin-top: var(--sticky-total);
+    }
+
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ---------- 吸顶公告条 ---------- */
+    .notice-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--notice-h);
+      line-height: var(--notice-h);
+      background: linear-gradient(90deg, #0f2b3d 0%, #1a3f56 100%);
+      color: #f0e6d2;
+      font-size: 13px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      white-space: nowrap;
+      overflow-x: auto;
+    }
+    .notice-bar strong {
+      color: #f0b429;
+      font-weight: 600;
+    }
+    .notice-bar .notice-tag {
+      background: #f0b429;
+      color: #0f2b3d;
+      font-size: 11px;
+      padding: 1px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* ---------- 吸顶页头 ---------- */
+    .site-header {
+      position: sticky;
+      top: var(--notice-h);
+      z-index: 99;
+      height: var(--header-h);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .brand svg {
+      width: 36px;
+      height: 36px;
+      display: block;
+    }
+    .brand-text {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--brand);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .header-nav {
+      display: flex;
+      gap: 4px;
+      margin-left: auto;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .header-nav::-webkit-scrollbar { display: none; }
+    .header-nav a {
+      font-size: 14px;
+      color: var(--ink-soft);
+      padding: 6px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .header-nav a:hover {
+      background: var(--brand-soft);
+      text-decoration: none;
+      color: var(--brand);
+    }
+
+    /* ---------- 首屏 ---------- */
+    .hero {
+      background: linear-gradient(135deg, #0f2b3d 0%, #1a3f56 55%, #24526b 100%);
+      color: #f0f4f8;
+      padding: 48px 24px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-text { flex: 1 1 55%; }
+    .hero-text h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: #c6d7e5;
+      max-width: 560px;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero-meta span {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      color: #d4e4f0;
+    }
+    .hero-visual {
+      flex: 0 0 300px;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-visual svg {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.25));
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -80px;
+      bottom: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(240, 180, 41, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ---------- 三栏布局 ---------- */
+    .layout {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 28px 24px 48px;
+      display: grid;
+      grid-template-columns: 176px minmax(0, 1fr) 248px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* ---------- 左栏 ---------- */
+    .sidebar-left {
+      position: sticky;
+      top: calc(var(--sticky-total) + 16px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .channel-nav {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 0;
+      box-shadow: var(--shadow);
+    }
+    .channel-nav h2 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 0 16px 8px;
+      letter-spacing: 1px;
+    }
+    .channel-nav a {
+      display: block;
+      padding: 8px 16px;
+      font-size: 14px;
+      color: var(--ink-soft);
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .channel-nav a:hover {
+      background: var(--brand-soft);
+      border-left-color: var(--accent);
+      text-decoration: none;
+      color: var(--brand);
+    }
+    .filter-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+    }
+    .filter-panel h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .filter-tags button {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--ink-soft);
+      cursor: pointer;
+      font-family: var(--font);
+      transition: all 0.15s;
+    }
+    .filter-tags button:hover,
+    .filter-tags button.active {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
+    .search-box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      box-shadow: var(--shadow);
+    }
+    .search-box label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      outline: none;
+    }
+    .search-box input:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 2px rgba(31, 110, 107, 0.12);
+    }
+    .search-feedback {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+      min-height: 16px;
+    }
+
+    /* ---------- 中栏 ---------- */
+    .main-col {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      min-width: 0;
+    }
+    .section-block {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+      box-shadow: var(--shadow);
+    }
+    .section-block h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 16px;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-block h2::before {
+      content: '';
+      width: 4px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .section-block h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--brand);
+      margin: 18px 0 8px;
+    }
+    .section-block p {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      margin-bottom: 12px;
+      line-height: 1.85;
+    }
+    .section-block ul {
+      margin: 8px 0 12px 20px;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.85;
+    }
+    .section-block ul li { margin-bottom: 4px; }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .content-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      background: var(--bg);
+      transition: box-shadow 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .content-card:hover {
+      border-color: var(--teal);
+      box-shadow: 0 4px 16px rgba(15, 43, 61, 0.08);
+    }
+    .content-card .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--brand);
+      line-height: 1.4;
+    }
+    .content-card .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 2px;
+    }
+    .card-tags span {
+      font-size: 11px;
+      padding: 1px 8px;
+      border-radius: 10px;
+      background: var(--brand-soft);
+      color: var(--ink-soft);
+    }
+    .card-meta {
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    /* 动态列表 */
+    .update-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .update-item {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 14px;
+    }
+    .update-item:last-child { border-bottom: none; }
+    .update-item .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .update-item .name {
+      font-weight: 600;
+      color: var(--brand);
+      white-space: nowrap;
+    }
+    .update-item .summary {
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    /* 分类入口 */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .cat-item {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 14px 12px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--brand);
+      transition: all 0.15s;
+      cursor: default;
+    }
+    .cat-item:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .cat-item small {
+      display: block;
+      font-weight: 400;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* 对照面板 */
+    .compare-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      margin: 12px 0;
+    }
+    .compare-panel > div {
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+    .compare-panel .left-cell {
+      background: var(--teal-soft);
+      border-right: 1px solid var(--line);
+    }
+    .compare-panel .right-cell {
+      background: var(--accent-soft);
+    }
+    .compare-panel .cell-head {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--brand);
+      margin-bottom: 6px;
+    }
+
+    /* FAQ */
+    .faq-list details {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 0;
+    }
+    .faq-list details:last-child { border-bottom: none; }
+    .faq-list summary {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--brand);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::before {
+      content: '＋';
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .faq-list details[open] summary::before { content: '－'; }
+    .faq-list details p {
+      margin: 8px 0 0 22px;
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+
+    /* 评论 */
+    .comment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .comment-item {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+    .comment-item .nick {
+      font-weight: 600;
+      color: var(--teal);
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    /* 资讯 */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .news-item {
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+      font-size: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--line);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-item .news-date {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 80px;
+    }
+    .news-item .news-title {
+      font-weight: 600;
+      color: var(--brand);
+      margin-bottom: 2px;
+    }
+    .news-item .news-summary {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* 标签索引 */
+    .tag-index {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag-index a {
+      display: inline-block;
+      font-size: 13px;
+      padding: 4px 14px;
+      border-radius: 16px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      color: var(--ink-soft);
+      transition: all 0.15s;
+    }
+    .tag-index a:hover {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+      text-decoration: none;
+    }
+
+    /* 时间线 */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+      margin: 12px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--line);
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 16px 16px;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -19px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--panel);
+    }
+    .timeline-item strong {
+      color: var(--brand);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* 引语卡 */
+    .quote-card {
+      background: var(--teal-soft);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 16px 20px;
+      margin: 14px 0;
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+    .quote-card .quote-author {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ---------- 右栏 ---------- */
+    .sidebar-right {
+      position: sticky;
+      top: calc(var(--sticky-total) + 16px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .side-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+    .side-panel h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .toc-list {
+      list-style: none;
+      font-size: 13px;
+    }
+    .toc-list li { margin-bottom: 4px; }
+    .toc-list a {
+      color: var(--ink-soft);
+      display: block;
+      padding: 3px 0;
+      transition: color 0.15s;
+    }
+    .toc-list a:hover {
+      color: var(--teal);
+      text-decoration: none;
+    }
+    .hot-list {
+      list-style: none;
+      font-size: 13px;
+    }
+    .hot-list li {
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--line);
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+    .hot-list li:last-child { border-bottom: none; }
+    .hot-list .num {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 12px;
+      min-width: 16px;
+    }
+    .hot-list a { color: var(--ink-soft); }
+    .hot-list a:hover { color: var(--teal); }
+
+    /* ---------- 页尾 ---------- */
+    .site-footer {
+      background: var(--brand);
+      color: #c6d7e5;
+      padding: 36px 24px 24px;
+      font-size: 13px;
+    }
+    .footer-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 32px;
+    }
+    .footer-brand .footer-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #f0f4f8;
+      margin-bottom: 8px;
+    }
+    .footer-brand p {
+      color: #8fa8bd;
+      line-height: 1.7;
+      font-size: 13px;
+    }
+    .footer-col h4 {
+      font-size: 14px;
+      color: #f0f4f8;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .footer-col a {
+      display: block;
+      color: #8fa8bd;
+      font-size: 13px;
+      padding: 3px 0;
+      transition: color 0.15s;
+    }
+    .footer-col a:hover { color: #f0b429; text-decoration: none; }
+    .footer-bottom {
+      max-width: 1320px;
+      margin: 24px auto 0;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 12px;
+      color: #6d8296;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 1100px) {
+      .layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .sidebar-left, .sidebar-right {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .sidebar-left > *, .sidebar-right > * {
+        flex: 1 1 200px;
+      }
+      .channel-nav { flex: 1 1 100%; }
+      .channel-nav a {
+        display: inline-block;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        padding: 6px 12px;
+      }
+      .channel-nav a:hover { border-left: none; border-bottom-color: var(--accent); }
+      .cat-grid { grid-template-columns: repeat(4, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .hero-inner { flex-direction: column; gap: 20px; }
+      .hero-text h1 { font-size: 24px; }
+      .hero-visual { flex: 0 0 auto; }
+      .hero-visual svg { max-width: 200px; }
+      .site-header { padding: 0 12px; gap: 10px; }
+      .brand-text { font-size: 16px; }
+      .header-nav { gap: 0; }
+      .header-nav a { font-size: 12px; padding: 4px 8px; }
+      .layout { padding: 16px 12px 32px; }
+      .section-block { padding: 18px 16px; }
+      .section-block h2 { font-size: 17px; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .comment-grid { grid-template-columns: 1fr; }
+      .compare-panel { grid-template-columns: 1fr; }
+      .compare-panel .left-cell { border-right: none; border-bottom: 1px solid var(--line); }
+      .footer-inner { grid-template-columns: 1fr; gap: 20px; }
+      .notice-bar { font-size: 11px; padding: 0 10px; gap: 6px; }
+      .notice-bar .notice-tag { font-size: 10px; padding: 0 6px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .news-item { flex-direction: column; gap: 2px; }
+    }
+
+    @media (max-width: 400px) {
+      .cat-grid { grid-template-columns: 1fr 1fr; }
+      .hero-text h1 { font-size: 21px; }
+    }
+
+    /* 无结果提示 */
+    .no-result-msg {
+      display: none;
+      font-size: 14px;
+      color: var(--muted);
+      padding: 12px 0;
+      text-align: center;
+    }
+    .no-result-msg.show { display: block; }
+
+    /* 键盘焦点 */
+    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 吸顶公告条 -->
+  <div class="notice-bar" role="region" aria-label="站内公告">
+    <span class="notice-tag">更新</span>
+    <span>新增 <strong>免费版功能限制对照</strong> 与 <strong>官方入口路径说明</strong>，首次使用可先看版本对比。</span>
+  </div>
+
+  <!-- 吸顶页头 -->
+  <header class="site-header">
+    <div class="brand">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="100" height="100" rx="20" fill="#0f2b3d"/>
+        <text x="50" y="66" font-size="48" text-anchor="middle" fill="#f0b429" font-family="sans-serif" font-weight="700">91</text>
+        <circle cx="76" cy="24" r="7" fill="#1f6e6b" stroke="#f0f4f8" stroke-width="2"/>
+      </svg>
+      <span class="brand-text">91免费版官网入口</span>
+    </div>
+    <nav class="header-nav" aria-label="页头导航">
+      <a href="/#intro">简介</a>
+      <a href="/#hot">热门推荐</a>
+      <a href="/#update">最新动态</a>
+      <a href="/#cats">分类</a>
+      <a href="/#deep">深度解析</a>
+      <a href="/#faq">问答</a>
+      <a href="/#comments">评论</a>
+    </nav>
+  </header>
+
+  <!-- 首屏 -->
+  <section class="hero" aria-label="首屏介绍">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>91免费版官网入口</h1>
+        <p class="hero-desc">围绕免费版功能范围、入口路径与版本选择展开的内容型门户。提供功能解析、适用场景对照、用户常见问题与版本选择建议，适合初次接触或正在犹豫版本的用户按需查阅。</p>
+        <div class="hero-meta">
+          <span>功能解析</span>
+          <span>入口路径说明</span>
+          <span>版本对比</span>
+          <span>场景推荐</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 280 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="10" width="240" height="160" rx="16" fill="#1a3f56" stroke="#2f5a72" stroke-width="1.5"/>
+          <rect x="36" y="28" width="80" height="10" rx="5" fill="#f0b429" opacity="0.85"/>
+          <rect x="36" y="46" width="180" height="6" rx="3" fill="#3e6078"/>
+          <rect x="36" y="58" width="140" height="6" rx="3" fill="#3e6078"/>
+          <rect x="36" y="78" width="60" height="50" rx="8" fill="#0f2b3d" stroke="#2f5a72"/>
+          <rect x="106" y="78" width="60" height="50" rx="8" fill="#0f2b3d" stroke="#2f5a72"/>
+          <rect x="176" y="78" width="40" height="50" rx="8" fill="#1f6e6b" opacity="0.35"/>
+          <circle cx="240" cy="36" r="12" fill="#f0b429" opacity="0.2"/>
+          <circle cx="240" cy="36" r="6" fill="#f0b429" opacity="0.7"/>
+          <rect x="36" y="140" width="170" height="6" rx="3" fill="#3e6078"/>
+          <rect x="36" y="152" width="120" height="6" rx="3" fill="#3e6078"/>
+          <path d="M220 180 L260 180 L250 200 L230 200 Z" fill="#1f6e6b" opacity="0.5"/>
+          <rect x="120" y="190" width="60" height="6" rx="3" fill="#2f5a72" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三栏主内容区 -->
+  <div class="layout">
+
+    <!-- 左栏：频道导航 + 筛选 + 搜索 -->
+    <aside class="sidebar-left" aria-label="左栏导航与筛选">
+      <nav class="channel-nav" aria-label="频道导航">
+        <h2>频道索引</h2>
+        <a href="/#intro">内容简介</a>
+        <a href="/#hot">热门内容推荐</a>
+        <a href="/#update">最新更新动态</a>
+        <a href="/#cats">分类入口</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">体验指南</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#comments">用户评论</a>
+        <a href="/#news">相关资讯</a>
+        <a href="/#related">相关推荐</a>
+        <a href="/#timeline">版本演进</a>
+      </nav>
+
+      <div class="filter-panel">
+        <h3>按类型筛选</h3>
+        <div class="filter-tags" id="filterTags">
+          <button data-filter="all" class="active">全部</button>
+          <button data-filter="功能解析">功能解析</button>
+          <button data-filter="入口路径">入口路径</button>
+          <button data-filter="版本对比">版本对比</button>
+          <button data-filter="适用场景">适用场景</button>
+          <button data-filter="常见问题">常见问题</button>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <label for="searchInput">站内查找</label>
+        <input type="text" id="searchInput" placeholder="输入关键词筛选内容" autocomplete="off">
+        <div class="search-feedback" id="searchFeedback"></div>
+      </div>
+    </aside>
+
+    <!-- 中栏：正文板块 -->
+    <main class="main-col" id="main-content">
+
+      <!-- 1. 内容简介 -->
+      <section class="section-block" id="intro">
+        <h2>内容简介</h2>
+        <p>91免费版官网入口是围绕免费版功能范围与入口路径展开的信息整理页面，面向希望了解免费版能做什么、适合什么场景、与付费版本差异在哪里的用户。内容覆盖功能解析、入口说明、场景对照和选择建议，帮助读者在较短时间内建立对免费版的完整认识。</p>
+        <p>免费版并非付费版本的简化版，而是在功能集合与使用边界上做了明确划分。了解这些划分，比盲目寻找“全功能免费”更实际。本页按“功能范围—适用场景—版本差异—入口说明”的顺序组织信息，每一块解决一个具体问题，不重复堆叠描述。</p>
+        <p>对于刚接触的用户，建议先看<strong>功能解析</strong>和<strong>版本对比</strong>，再结合自己的使用场景判断是否够用。如果你已经在用免费版并且遇到具体限制，可以直接跳到<strong>常见问答</strong>和<strong>体验指南</strong>。对于正在犹豫是否升级的用户，<strong>版本对比</strong>和<strong>适用场景</strong>两节提供了判断依据。</p>
+        <p>本页所有功能名称、限制范围和场景描述均按免费版通用逻辑整理，不同使用环境可能存在细微差异，以实际界面为准。内容按模块独立成节，支持按需跳转阅读。</p>
+      </section>
+
+      <!-- 2. 热门内容推荐 -->
+      <section class="section-block" id="hot">
+        <h2>热门内容推荐</h2>
+        <div class="card-grid" id="hotCards">
+          <div class="content-card" data-tags="功能解析">
+            <div class="card-title">免费版核心功能一览表</div>
+            <div class="card-desc">逐项列出免费版开放的功能模块、使用次数限制与可调整参数，适合快速确认能否满足日常需要。</div>
+            <div class="card-tags"><span>功能解析</span><span>使用限制</span><span>日常需要</span></div>
+            <div class="card-meta"><span>热度 9.2</span><span>更新 06-12</span></div>
+          </div>
+          <div class="content-card" data-tags="入口路径">
+            <div class="card-title">官方入口路径拆解与验证方法</div>
+            <div class="card-desc">从主站导航到免费版入口的完整路径说明，附带入口真伪的简单验证方式，减少误入仿冒页面。</div>
+            <div class="card-tags"><span>入口路径</span><span>真伪验证</span><span>导航说明</span></div>
+            <div class="card-meta"><span>热度 8.8</span><span>更新 06-10</span></div>
+          </div>
+          <div class="content-card" data-tags="版本对比">
+            <div class="card-title">免费版与付费版功能差异对照</div>
+            <div class="card-desc">按功能模块逐一对照两个版本，标注免费版缺失项和受限项，帮助判断升级是否必要。</div>
+            <div class="card-tags"><span>版本对比</span><span>功能差异</span><span>升级判断</span></div>
+            <div class="card-meta"><span>热度 9.5</span><span>更新 06-14</span></div>
+          </div>
+          <div class="content-card" data-tags="适用场景">
+            <div class="card-title">免费版适合哪些使用场景</div>
+            <div class="card-desc">按轻度使用、临时需求、功能体验三类场景说明免费版的匹配程度，附不适用场景提醒。</div>
+            <div class="card-tags"><span>适用场景</span><span>轻度使用</span><span>临时需求</span></div>
+            <div class="card-meta"><span>热度 8.6</span><span>更新 06-09</span></div>
+          </div>
+          <div class="content-card" data-tags="常见问题">
+            <div class="card-title">免费版常见限制与应对方式</div>
+            <div class="card-desc">整理使用频率限制、导出限制和并发限制三类常见问题，给出不升级情况下的应对思路。</div>
+            <div class="card-tags"><span>常见问题</span><span>使用限制</span><span>应对思路</span></div>
+            <div class="card-meta"><span>热度 8.3</span><span>更新 06-08</span></div>
+          </div>
+          <div class="content-card" data-tags="功能解析">
+            <div class="card-title">免费版账号体系与登录方式说明</div>
+            <div class="card-desc">说明免费版支持的登录方式、账号状态对功能的影响，以及多端登录的基本规则。</div>
+            <div class="card-tags"><span>账号体系</span><span>登录方式</span><span>多端规则</span></div>
+            <div class="card-meta"><span>热度 8.0</span><span>更新 06-05</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 最新更新 / 热门动态 -->
+      <section class="section-block" id="update">
+        <h2>最新更新动态</h2>
+        <div class="update-list">
+          <div class="update-item"><span class="dot"></span><span class="name">功能对照表更新</span><span class="summary">新增数据导出与批量操作两项限制说明。</span></div>
+          <div class="update-item"><span class="dot"></span><span class="name">入口路径说明补充</span><span class="summary">增加移动端入口的路径节点与注意事项。</span></div>
+          <div class="update-item"><span class="dot"></span><span class="name">版本对比页调整</span><span class="summary">按使用频率重新排列对比项，更贴近实际决策顺序。</span></div>
+          <div class="update-item"><span class="dot"></span><span class="name">适用场景细化</span><span class="summary">拆分出“短期项目”和“个人日常”两类场景建议。</span></div>
+          <div class="update-item"><span class="dot"></span><span class="name">问答库新增三条</span><span class="summary">围绕免费版是否够用、限制能否绕过等问题补充回答。</span></div>
+          <div class="update-item"><span class="dot"></span><span class="name">评论精选更新</span><span class="summary">新增关于免费版日常使用体验的反馈整理。</span></div>
+          <div class="update-item"><span class="dot"></span><span class="name">相关资讯同步</span><span class="summary">补充免费版功能调整的行业观察类资讯。</span></div>
+          <div class="update-item"><span class="dot"></span><span class="name">体验指南优化</span><span class="summary">增加收藏与追更功能的使用路径说明。</span></div>
+        </div>
+      </section>
+
+      <!-- 4. 分类入口 -->
+      <section class="section-block" id="cats">
+        <h2>分类入口</h2>
+        <div class="cat-grid">
+          <div class="cat-item">功能解析<small>开放范围与限制</small></div>
+          <div class="cat-item">入口路径<small>导航与验证</small></div>
+          <div class="cat-item">版本对比<small>免费版 vs 付费版</small></div>
+          <div class="cat-item">适用场景<small>轻度/临时/体验</small></div>
+          <div class="cat-item">账号与登录<small>方式与状态</small></div>
+          <div class="cat-item">常见限制<small>频次/导出/并发</small></div>
+          <div class="cat-item">升级判断<small>何时需要升级</small></div>
+          <div class="cat-item">使用问答<small>高频问题整理</small></div>
+        </div>
+      </section>
+
+      <!-- 5. 深度解析正文 -->
+      <section class="section-block" id="deep">
+        <h2>深度解析</h2>
+        <p>关于91免费版官网入口的讨论中，最常见的问题是“免费版到底能做什么”。要回答这个问题，需要把免费版放在完整的产品版本体系里看，而不是孤立地罗列功能清单。</p>
+
+        <h3>免费版的功能边界在哪里</h3>
+        <p>免费版通常保留核心使用路径，但在频次、导出、并发和存储四个维度设限。理解这四个维度，比记住具体数字更重要，因为限制项会随版本调整而变化，而维度的存在是稳定的。</p>
+        <ul>
+          <li><strong>频次限制</strong>：单日或单次可执行的操作次数有上限，适合低频使用，不适合连续性重度任务。</li>
+          <li><strong>导出限制</strong>：部分格式或批量导出能力仅在付费版开放，免费版可查看但不可完整导出。</li>
+          <li><strong>并发限制</strong>：同时进行的任务数量受限，多任务并行场景需要排队或分批处理。</li>
+          <li><strong>存储限制</strong>：可保存的内容总量有上限，长期积累型使用需要定期清理。</li>
+        </ul>
+        <p>这四类限制共同决定了免费版的适用边界：临时、低频、轻量的使用需求基本可以覆盖；连续性、批量性、长期积累型需求则需要考虑付费版本。</p>
+
+        <h3>入口路径的确认方式</h3>
+        <p>入口路径的可靠性直接影响使用安全。确认路径时，优先从主站导航进入，而不是通过搜索结果中的推广位或第三方跳转链接。主站导航通常有固定位置和明确的文字标识，路径层级不会超过三层。</p>
+        <p>如果入口页面要求输入与功能无关的敏感信息，或者页面风格与主站明显不一致，应暂停操作并回到主站重新确认路径。入口路径本身不复杂，复杂的是围绕入口产生的各种仿冒和诱导页面，保持从主站进入的习惯可以避开大部分风险。</p>
+
+        <h3>免费版与付费版的选择逻辑</h3>
+        <p>选择版本时，不建议只看功能数量，而应看限制项是否落在自己的高频使用路径上。如果限制项恰好是日常使用中最频繁的操作，免费版的体验会明显下降；反之，如果限制项处于低频操作区间，免费版的实际可用性并不低。</p>
+        <div class="compare-panel">
+          <div class="left-cell">
+            <div class="cell-head">免费版更适合</div>
+            临时查看与体验<br>
+            低频、非连续操作<br>
+            单任务、轻量使用<br>
+            对导出格式要求不高
+          </div>
+          <div class="right-cell">
+            <div class="cell-head">付费版更适合</div>
+            连续、批量操作<br>
+            多任务并行处理<br>
+            完整导出与长期存储<br>
+            对频次限制敏感
+          </div>
+        </div>
+        <p>判断顺序可以简化为：先列出自己每周使用次数最多的三项操作，再对照免费版的限制项。如果三项中有两项以上受到明显限制，升级的性价比才会显现；如果只有一项且频次不高，免费版通常够用。</p>
+        <p>另外，免费版的功能体验本身也是一种判断依据。在免费版中先确认核心功能是否符合预期，再决定是否升级，比直接看功能列表更可靠。版本选择没有统一答案，关键是把限制项和自己的使用习惯对齐。</p>
+      </section>
+
+      <!-- 6. 体验指南 -->
+      <section class="section-block" id="guide">
+        <h2>体验指南</h2>
+        <p>本页内容按“先了解功能，再判断场景，最后看入口和问答”的顺序组织。初次访问可以从顶部页头导航快速跳转到感兴趣的部分。</p>
+        <h3>页面结构与导航方式</h3>
+        <p>左栏提供频道索引和类型筛选，中栏是主体内容，右栏是页内目录和热门条目。页头导航和左栏频道索引指向同一组内容锚点，两者任选其一即可。移动端访问时，左右侧栏会折叠到主内容下方，频道导航转为横向可滑动形式。</p>
+        <h3>筛选与查找</h3>
+        <p>左栏的类型筛选按钮可以按“功能解析、入口路径、版本对比、适用场景、常见问题”快速过滤热门内容卡片。搜索框支持按关键词查找页面内可见内容，输入后会实时显示匹配结果数量，无匹配时会给出提示。</p>
+        <h3>收藏与追更建议</h3>
+        <p>如果关注版本对比和功能调整，建议收藏本页并定期回看“最新更新动态”板块。该板块按时间倒序排列更新条目，每条包含更新对象和一句话摘要，方便快速判断是否有需要关注的变化。</p>
+        <h3>延伸阅读路径</h3>
+        <p>阅读完深度解析后，可以按“常见问答 → 用户评论 → 相关资讯”的顺序继续，从不同角度补充对免费版的实际认识。相关推荐板块提供更细分的标签入口，适合按具体方向深入。</p>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="section-block" id="faq">
+        <h2>常见问答</h2>
+        <div class="faq-list">
+          <details>
+            <summary>91免费版和付费版的主要区别是什么？</summary>
+            <p>主要区别集中在频次、导出、并发和存储四个维度。免费版保留核心使用路径，但在这四个维度设有上限；付费版解除或放宽这些限制，并开放批量导出和多任务并行能力。功能名称基本一致，差别在于使用边界。</p>
+          </details>
+          <details>
+            <summary>免费版的功能适合哪些人使用？</summary>
+            <p>适合低频、临时、单任务为主的用户，例如偶尔查看、短期项目试用或想先确认核心功能是否符合预期的人。如果日常操作频次高、需要批量导出或多任务并行，免费版的使用体验会受到明显影响。</p>
+          </details>
+          <details>
+            <summary>免费版一般多久更新一次功能？</summary>
+            <p>免费版的功能调整通常跟随主版本节奏，没有独立的固定更新周期。核心功能的可用性相对稳定，限制项的具体数值可能随版本迭代微调。关注“最新更新动态”板块可以及时看到变化。</p>
+          </details>
+          <details>
+            <summary>官方入口路径怎么确认是不是正确的？</summary>
+            <p>优先从主站导航进入，入口层级一般不超过三层，页面风格和文字标识与主站保持一致。如果入口页要求输入与功能无关的敏感信息，或页面风格明显不一致，应暂停操作并回到主站重新确认路径。</p>
+          </details>
+          <details>
+            <summary>免费版的使用限制有办法绕过吗？</summary>
+            <p>不建议尝试绕过限制。绕过行为通常伴随账号风险和信息安全风险，且限制项会随版本调整而变化，绕过方式并不稳定。如果限制确实影响使用，更实际的做法是对照版本差异判断是否需要升级。</p>
+          </details>
+          <details>
+            <summary>免费版和付费版相比，哪个更划算？</summary>
+            <p>“划算”取决于限制项是否落在你的高频操作上。先列出每周使用最多的三项操作，再对照免费版限制。如果多数高频操作不受限，免费版更划算；如果两项以上明显受限，升级的性价比才会显现。建议先在免费版中确认核心功能是否符合预期。</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8. 用户评论 -->
+      <section class="section-block" id="comments">
+        <h2>用户评论</h2>
+        <div class="comment-grid">
+          <div class="comment-item"><div class="nick">林间轻风</div>免费版用来临时查看完全够用，频次限制对我影响不大。</div>
+          <div class="comment-item"><div class="nick">南岸旧船</div>导出限制确实有点难受，不过日常查看没什么问题。</div>
+          <div class="comment-item"><div class="nick">半盏清茶</div>版本对比那块写得很清楚，看完就知道自己需不需要升级了。</div>
+          <div class="comment-item"><div class="nick">北纬三十度</div>入口路径说明比较实用，之前确实差点走错页面。</div>
+          <div class="comment-item"><div class="nick">代码与猫</div>免费版功能够用，但多任务并行的时候要排队，有点慢。</div>
+          <div class="comment-item"><div class="nick">晚风来信</div>问答部分回答得比较实在，没有绕弯子。</div>
+          <div class="comment-item"><div class="nick">山间雾起</div>我是轻度用户，免费版完全覆盖需求，暂时没有升级打算。</div>
+          <div class="comment-item"><div class="nick">一颗青柠</div>建议加上具体限制数值，现在只写了维度，看的时候还要自己试。</div>
+          <div class="comment-item"><div class="nick">旧巷猫</div>从主站进确实更稳妥，第三方链接不太敢点。</div>
+          <div class="comment-item"><div class="nick">纸飞机</div>适用场景那节挺有用，帮我省了纠结的时间。</div>
+          <div class="comment-item"><div class="nick">蓝色铅笔</div>整体信息比较干，没有太多废话，适合快速翻一遍。</div>
+          <div class="comment-item"><div class="nick">慢速快门</div>免费版存储上限有点低，长期用的话要定期清理。</div>
+        </div>
+      </section>
+
+      <!-- 9. 相关资讯 -->
+      <section class="section-block" id="news">
+        <h2>相关资讯</h2>
+        <div class="news-list">
+          <div class="news-item">
+            <div class="news-date">2025-06-12</div>
+            <div><div class="news-title">免费版功能调整的行业观察</div><div class="news-summary">多家产品在免费版策略上趋向“核心可用、边界明确”，频次与导出限制成为常见划分方式。</div></div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">2025-06-08</div>
+            <div><div class="news-title">版本对比页面的设计思路变化</div><div class="news-summary">从罗列功能数量转向按使用频率排序，帮助用户更快判断限制项是否影响自身场景。</div></div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">2025-05-30</div>
+            <div><div class="news-title">入口安全与路径验证的常见做法</div><div class="news-summary">主站导航优先、层级控制、风格一致性检查，成为用户确认官方入口的三项基本习惯。</div></div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">2025-05-22</div>
+            <div><div class="news-title">免费版用户的使用场景分布</div><div class="news-summary">低频查看和短期体验是免费版的两大主要场景，连续性任务更倾向于升级付费版本。</div></div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">2025-05-15</div>
+            <div><div class="news-title">账号体系对免费版体验的影响</div><div class="news-summary">登录方式与账号状态直接关联功能开放范围，多端登录规则需要提前了解。</div></div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">2025-05-06</div>
+            <div><div class="news-title">免费版限制项与用户预期的匹配度</div><div class="news-summary">当限制项落在低频操作区间时，免费版的实际可用性明显高于用户预期。</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. 相关推荐 -->
+      <section class="section-block" id="related">
+        <h2>相关推荐</h2>
+        <div class="tag-index">
+          <a href="/#deep">免费版功能限制对照</a>
+          <a href="/#deep">入口路径验证方法</a>
+          <a href="/#deep">免费版与付费版选择依据</a>
+          <a href="/#faq">免费版是否够用判断</a>
+          <a href="/#guide">低频使用场景参考</a>
+          <a href="/#faq">升级前需要确认的事项</a>
+          <a href="/#comments">免费版日常使用反馈</a>
+        </div>
+      </section>
+
+      <!-- 11. 版本演进时间线 + 引语 -->
+      <section class="section-block" id="timeline">
+        <h2>版本演进与用户观察</h2>
+        <div class="timeline">
+          <div class="timeline-item"><strong>早期阶段</strong>免费版以核心功能开放为主，限制项较少但功能覆盖有限。</div>
+          <div class="timeline-item"><strong>功能扩展期</strong>免费版逐步增加可用模块，同时在频次和导出维度引入限制。</div>
+          <div class="timeline-item"><strong>边界明确期</strong>版本划分趋于稳定，免费版聚焦低频、轻量场景，付费版承接连续与批量需求。</div>
+          <div class="timeline-item"><strong>当前阶段</strong>限制项按使用频率优化，版本对比更强调场景匹配而非功能数量。</div>
+        </div>
+        <div class="quote-card">
+          “免费版的意义不是让所有人够用，而是让轻度用户在不受限的操作区间里获得完整的使用闭环。判断标准应该是限制项是否落在你的高频路径上，而不是功能列表的长度。”
+          <div class="quote-author">—— 内容整理组 · 版本观察笔记</div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 右栏 -->
+    <aside class="sidebar-right" aria-label="右栏辅助阅读">
+      <div class="side-panel">
+        <h3>页内目录</h3>
+        <ul class="toc-list">
+          <li><a href="/#intro">内容简介</a></li>
+          <li><a href="/#hot">热门内容推荐</a></li>
+          <li><a href="/#update">最新更新动态</a></li>
+          <li><a href="/#cats">分类入口</a></li>
+          <li><a href="/#deep">深度解析</a></li>
+          <li><a href="/#guide">体验指南</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+          <li><a href="/#comments">用户评论</a></li>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#related">相关推荐</a></li>
+          <li><a href="/#timeline">版本演进</a></li>
+        </ul>
+      </div>
+      <div class="side-panel">
+        <h3>热门条目</h3>
+        <ul class="hot-list">
+          <li><span class="num">1</span><a href="/#hot">免费版核心功能一览表</a></li>
+          <li><span class="num">2</span><a href="/#hot">免费版与付费版功能差异对照</a></li>
+          <li><span class="num">3</span><a href="/#hot">官方入口路径拆解与验证方法</a></li>
+          <li><span class="num">4</span><a href="/#hot">免费版适合哪些使用场景</a></li>
+          <li><span class="num">5</span><a href="/#hot">免费版常见限制与应对方式</a></li>
+        </ul>
+      </div>
+      <div class="side-panel">
+        <h3>延伸阅读</h3>
+        <ul class="toc-list">
+          <li><a href="/#deep">免费版的功能边界在哪里</a></li>
+          <li><a href="/#deep">入口路径的确认方式</a></li>
+          <li><a href="/#deep">免费版与付费版的选择逻辑</a></li>
+          <li><a href="/#faq">免费版的使用限制有办法绕过吗</a></li>
+          <li><a href="/#timeline">版本演进与用户观察</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- 页尾 -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">91免费版官网入口</div>
+        <p>围绕免费版功能范围、入口路径与版本选择展开的信息整理页面。帮助用户按场景判断免费版是否满足需要，减少盲目升级或误入非官方入口的情况。</p>
+      </div>
+      <div class="footer-col">
+        <h4>内容板块</h4>
+        <a href="/#intro">内容简介</a>
+        <a href="/#hot">热门内容推荐</a>
+        <a href="/#update">最新更新动态</a>
+        <a href="/#cats">分类入口</a>
+      </div>
+      <div class="footer-col">
+        <h4>深度阅读</h4>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">体验指南</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#timeline">版本演进</a>
+      </div>
+      <div class="footer-col">
+        <h4>互动与资讯</h4>
+        <a href="/#comments">用户评论</a>
+        <a href="/#news">相关资讯</a>
+        <a href="/#related">相关推荐</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 91免费版官网入口 内容整理页</span>
+      <span>部分内容为示例数据，仅用于展示页面结构</span>
+    </div>
+  </footer>
+
+  <!-- 轻量交互脚本 -->
+  <script>
+    (function() {
+      // 类型筛选
+      var filterBtns = document.querySelectorAll('#filterTags button');
+      var hotCards = document.querySelectorAll('#hotCards .content-card');
+
+      function applyFilter(filter) {
+        var visibleCount = 0;
+        hotCards.forEach(function(card) {
+          var tags = card.getAttribute('data-tags') || '';
+          if (filter === 'all' || tags.indexOf(filter) !== -1) {
+            card.style.display = '';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        var feedback = document.getElementById('searchFeedback');
+        if (filter !== 'all') {
+          feedback.textContent = '筛选「' + filter + '」：显示 ' + visibleCount + ' 条';
+        } else {
+          feedback.textContent = '';
+        }
+      }
+
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          applyFilter(btn.getAttribute('data-filter'));
+        });
+      });
+
+      // 搜索框本地筛选
+      var searchInput = document.getElementById('searchInput');
+      var searchFeedback = document.getElementById('searchFeedback');
+
+      searchInput.addEventListener('input', function() {
+        var q = this.value.trim().toLowerCase();
+        var visibleCount = 0;
+
+        // 恢复筛选状态
+        var activeFilter = 'all';
+        filterBtns.forEach(function(b) {
+          if (b.classList.contains('active')) activeFilter = b.getAttribute('data-filter');
+        });
+
+        hotCards.forEach(function(card) {
+          var title = card.querySelector('.card-title').textContent.toLowerCase();
+          var desc = card.querySelector('.card-desc').textContent.toLowerCase();
+          var tags = (card.getAttribute('data-tags') || '').toLowerCase();
+          var matchFilter = (activeFilter === 'all' || tags.indexOf(activeFilter) !== -1);
+          var matchQuery = (q === '' || title.indexOf(q) !== -1 || desc.indexOf(q) !== -1 || tags.indexOf(q) !== -1);
+
+          if (matchFilter && matchQuery) {
+            card.style.display = '';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (q === '') {
+          searchFeedback.textContent = activeFilter !== 'all' ? '筛选「' + activeFilter + '」：显示 ' + visibleCount + ' 条' : '';
+        } else {
+          if (visibleCount === 0) {
+            searchFeedback.textContent = '没有找到匹配的内容，换个关键词试试。';
+          } else {
+            searchFeedback.textContent = '找到 ' + visibleCount + ' 条匹配内容';
+          }
+        }
+      });
+
+      // 键盘可达性：筛选按钮组支持方向键
+      var filterContainer = document.getElementById('filterTags');
+      filterContainer.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          var btns = Array.from(filterContainer.querySelectorAll('button'));
+          var idx = btns.indexOf(document.activeElement);
+          if (idx === -1) return;
+          var next = e.key === 'ArrowRight' ? (idx + 1) % btns.length : (idx - 1 + btns.length) % btns.length;
+          btns[next].focus();
+        }
+      });
+    })();
+  </script>
+</body>
+        </html>
