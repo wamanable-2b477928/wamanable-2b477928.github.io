@@ -1,0 +1,1484 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日大赛推特-赛事速递_实时赛况_选手动态</title>
+  <meta name="description" content="每日大赛推特聚合当日赛事速递、实时赛况与选手动态，为电竞爱好者与参赛选手提供赛程追踪、高光回顾和社区讨论，方便快速掌握每日大赛推特上的热门对决与选手表现。">
+  <meta name="keywords" content="电竞赛事速递,实时赛况,选手动态,赛程追踪,高光回顾">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f172a'/%3E%3Cpath d='M8 10h16v3H8zm0 6h16v3H8zm0 6h10v3H8z' fill='%23f97316'/%3E%3Ccircle cx='24' cy='24' r='4' fill='%23facc15'/%3E%3C/svg%3E">
+  <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --bg: #f8fafc;
+      --panel: #ffffff;
+      --ink: #0f172a;
+      --ink-soft: #334155;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --brand: #0f172a;
+      --brand-accent: #f97316;
+      --brand-glow: #fed7aa;
+      --card-shadow: 0 8px 20px rgba(15, 23, 42, 0.04), 0 2px 6px rgba(15, 23, 42, 0.02);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      --announce-h: 42px;
+      --header-h: 68px;
+      --sticky-offset: calc(var(--announce-h) + var(--header-h));
+    }
+    html {
+      scroll-padding-top: calc(var(--sticky-offset) + 12px);
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    /* 吸顶公告条 */
+    .announce-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--brand);
+      color: #f8fafc;
+      height: var(--announce-h);
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .announce-bar .container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .announce-tag {
+      background: var(--brand-accent);
+      color: #0f172a;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .announce-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      opacity: 0.9;
+    }
+    .announce-text strong {
+      color: #facc15;
+      font-weight: 600;
+    }
+    /* 吸顶页头 */
+    .site-header {
+      position: sticky;
+      top: var(--announce-h);
+      z-index: 40;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .brand svg {
+      width: 34px;
+      height: 34px;
+    }
+    .brand-word {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: var(--brand);
+      white-space: nowrap;
+    }
+    .header-nav {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--ink-soft);
+    }
+    .header-nav a {
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .header-nav a:hover {
+      border-bottom-color: var(--brand-accent);
+      color: var(--brand);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #f1f5f9;
+      border-radius: 30px;
+      padding: 4px 6px 4px 16px;
+      border: 1px solid var(--line);
+    }
+    .search-box input {
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      padding: 6px 0;
+      width: 160px;
+      outline: none;
+      font-family: inherit;
+      color: var(--ink);
+    }
+    .search-box input::placeholder {
+      color: #94a3b8;
+    }
+    .search-box button {
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+      font-family: inherit;
+    }
+    .search-box button:hover {
+      background: #1e293b;
+    }
+    .search-feedback {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 4px 0 0 4px;
+      min-height: 20px;
+    }
+    /* 首屏 */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #2d3a4f 100%);
+      color: #f8fafc;
+      padding: 48px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -60px;
+      bottom: -80px;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(249,115,22,0.22) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-text {
+      max-width: 620px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(249,115,22,0.18);
+      color: #fdba74;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 30px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(249,115,22,0.3);
+    }
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero-desc {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #cbd5e1;
+      max-width: 540px;
+      margin-bottom: 24px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--brand-accent);
+      color: #0f172a;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-size: 15px;
+      transition: background 0.15s;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-primary:hover {
+      background: #fb923c;
+    }
+    .btn-ghost {
+      background: transparent;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: border-color 0.15s, background 0.15s;
+      display: inline-block;
+    }
+    .btn-ghost:hover {
+      border-color: #94a3b8;
+      background: rgba(255,255,255,0.04);
+    }
+    .hero-visual {
+      flex-shrink: 0;
+      width: 300px;
+      height: 200px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    .visual-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .visual-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #f97316;
+      flex-shrink: 0;
+    }
+    .visual-dot.green {
+      background: #22c55e;
+    }
+    .visual-dot.blue {
+      background: #3b82f6;
+    }
+    .visual-bar {
+      height: 8px;
+      border-radius: 6px;
+      background: #334155;
+      flex: 1;
+    }
+    .visual-bar.short {
+      flex: 0.6;
+    }
+    .visual-label {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+    /* 三栏主结构 */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr) 250px;
+      gap: 28px;
+      margin: 32px 0 48px;
+      align-items: start;
+    }
+    /* 左栏 */
+    .left-sidebar {
+      position: sticky;
+      top: calc(var(--sticky-offset) + 16px);
+      max-height: calc(100vh - var(--sticky-offset) - 32px);
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .sidebar-block {
+      background: var(--panel);
+      border-radius: var(--radius-sm);
+      padding: 16px 14px;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--card-shadow);
+    }
+    .sidebar-block h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .channel-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .channel-list a {
+      display: block;
+      padding: 7px 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      transition: background 0.15s, color 0.15s;
+    }
+    .channel-list a:hover {
+      background: #f1f5f9;
+      color: var(--brand);
+    }
+    .channel-list a.active {
+      background: #fff7ed;
+      color: #c2410c;
+      font-weight: 600;
+    }
+    /* 中栏 */
+    .center-content {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .section-card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+      border: 1px solid var(--line);
+      box-shadow: var(--card-shadow);
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+      color: var(--brand);
+    }
+    .section-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .intro-text p {
+      margin-bottom: 14px;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    .intro-text p:last-child {
+      margin-bottom: 0;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .content-card {
+      background: #fcfcfd;
+      border-radius: var(--radius-sm);
+      padding: 16px 16px 14px;
+      border: 1px solid var(--line);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .content-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .card-type {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #c2410c;
+      background: #fff7ed;
+      padding: 2px 8px;
+      border-radius: 20px;
+      align-self: flex-start;
+      margin-bottom: 10px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .tag {
+      font-size: 11px;
+      background: #f1f5f9;
+      color: #475569;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #94a3b8;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      margin-top: auto;
+    }
+    .update-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .update-item {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: flex-start;
+    }
+    .update-item:last-child {
+      border-bottom: none;
+    }
+    .update-time {
+      font-size: 12px;
+      color: #94a3b8;
+      font-weight: 500;
+      min-width: 64px;
+      padding-top: 2px;
+    }
+    .update-body {
+      flex: 1;
+    }
+    .update-name {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+    .update-summary {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .category-item {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 10px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .category-item:hover {
+      background: #fff7ed;
+      border-color: #fdba74;
+      color: #c2410c;
+    }
+    .deep-dive h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 24px 0 10px;
+      color: var(--brand);
+    }
+    .deep-dive h3:first-of-type {
+      margin-top: 0;
+    }
+    .deep-dive p {
+      color: var(--ink-soft);
+      margin-bottom: 12px;
+      line-height: 1.75;
+    }
+    .deep-dive ul {
+      margin: 8px 0 16px 20px;
+      color: var(--ink-soft);
+    }
+    .deep-dive li {
+      margin-bottom: 6px;
+      line-height: 1.65;
+    }
+    .guide-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .step-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      background: #fff7ed;
+      color: #c2410c;
+      font-weight: 800;
+      font-size: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid #fed7aa;
+    }
+    .step-text h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .step-text p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    details.faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 4px 0;
+    }
+    details.faq-item:last-child {
+      border-bottom: none;
+    }
+    details.faq-item summary {
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 0;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--ink);
+    }
+    details.faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    details.faq-item summary::after {
+      content: '+';
+      font-size: 20px;
+      color: var(--muted);
+      font-weight: 400;
+      line-height: 1;
+    }
+    details.faq-item[open] summary::after {
+      content: '−';
+    }
+    .faq-answer {
+      padding: 0 0 16px;
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+    .comment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .comment-item {
+      display: flex;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .comment-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .comment-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .comment-body {
+      flex: 1;
+    }
+    .comment-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 3px;
+    }
+    .comment-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .comment-date {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+    .comment-text {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .news-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .news-title {
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .news-meta {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+    .news-summary {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+    .related-tag {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      text-align: center;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .related-tag:hover {
+      background: #fff7ed;
+      border-color: #fdba74;
+      color: #c2410c;
+    }
+    /* 右栏 */
+    .right-sidebar {
+      position: sticky;
+      top: calc(var(--sticky-offset) + 16px);
+      max-height: calc(100vh - var(--sticky-offset) - 32px);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .right-block {
+      background: var(--panel);
+      border-radius: var(--radius-sm);
+      padding: 18px 16px;
+      border: 1px solid var(--line);
+      box-shadow: var(--card-shadow);
+    }
+    .right-block h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 14px;
+    }
+    .toc-list a {
+      display: block;
+      padding: 3px 0;
+      color: var(--ink-soft);
+      border-bottom: 1px dashed transparent;
+    }
+    .toc-list a:hover {
+      color: var(--brand-accent);
+      border-bottom-color: #fed7aa;
+    }
+    .hot-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hot-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 14px;
+    }
+    .hot-rank {
+      font-weight: 800;
+      font-size: 16px;
+      color: #cbd5e1;
+      min-width: 22px;
+      line-height: 1.4;
+    }
+    .hot-item:nth-child(1) .hot-rank { color: #f97316; }
+    .hot-item:nth-child(2) .hot-rank { color: #94a3b8; }
+    .hot-item:nth-child(3) .hot-rank { color: #b45309; }
+    .hot-title {
+      font-weight: 500;
+      line-height: 1.45;
+    }
+    .hot-meta {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+    .extend-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14px;
+    }
+    .extend-list a {
+      color: var(--ink-soft);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .extend-list a::before {
+      content: '›';
+      color: var(--brand-accent);
+      font-weight: 700;
+    }
+    .extend-list a:hover {
+      color: var(--brand-accent);
+    }
+    /* 页尾 */
+    .site-footer {
+      background: var(--brand);
+      color: #cbd5e1;
+      padding: 40px 0 28px;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 28px;
+    }
+    .footer-brand .brand-word {
+      color: #f8fafc;
+      font-size: 20px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #94a3b8;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      color: #f8fafc;
+      font-size: 14px;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-col a {
+      color: #94a3b8;
+      font-size: 13px;
+    }
+    .footer-col a:hover {
+      color: #fed7aa;
+    }
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #64748b;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    /* 搜索反馈 */
+    .no-result-msg {
+      display: none;
+      padding: 8px 0;
+      color: #b91c1c;
+      font-size: 14px;
+    }
+    /* 平板与手机 */
+    @media (max-width: 1024px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+      .left-sidebar, .right-sidebar {
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+      }
+      .left-sidebar {
+        order: 2;
+      }
+      .center-content {
+        order: 1;
+      }
+      .right-sidebar {
+        order: 3;
+      }
+      .hero h1 {
+        font-size: 34px;
+      }
+      .hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-visual {
+        width: 100%;
+        max-width: 400px;
+      }
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+      .header-nav {
+        display: none;
+      }
+      .search-box input {
+        width: 100px;
+      }
+      .hero h1 {
+        font-size: 28px;
+      }
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .section-card {
+        padding: 18px 16px;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 24px;
+      }
+      .header-actions .search-box {
+        display: none;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    /* 辅助 */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+    .mt-2 { margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+<!-- 吸顶公告条 -->
+<div class="announce-bar" role="banner">
+  <div class="container">
+    <span class="announce-tag">今日热点</span>
+    <span class="announce-text"><strong>每日大赛推特</strong> 春季赛第三周赛程公布，选手转会动态与高光操作集锦同步更新，点击进入专题页查看。</span>
+  </div>
+</div>
+
+<!-- 吸顶页头 -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="#0f172a"/>
+        <path d="M8 10h16v3H8zm0 6h16v3H8zm0 6h10v3H8z" fill="#f97316"/>
+        <circle cx="24" cy="24" r="4" fill="#facc15"/>
+      </svg>
+      <span class="brand-word">每日大赛推特</span>
+    </div>
+    <nav class="header-nav" aria-label="主导航">
+      <a href="#intro">内容简介</a>
+      <a href="#hot">热门推荐</a>
+      <a href="#updates">最新动态</a>
+      <a href="#categories">分类入口</a>
+      <a href="#deep-dive">深度解析</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <div class="header-actions">
+      <div class="search-box">
+        <input type="search" id="searchInput" placeholder="搜索赛事或选手..." aria-label="搜索页面内容">
+        <button id="searchBtn" type="button">搜索</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 首屏 -->
+<section class="hero" id="top">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <span class="hero-badge">每日更新 · 实时赛况</span>
+      <h1>每日大赛推特</h1>
+      <p class="hero-desc">汇聚每日大赛推特上的热门赛事对决、选手高光时刻与社区热议话题。从赛程速递到深度复盘，帮助电竞爱好者快速掌握每日赛况，追踪你关注的选手与战队。</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#hot">浏览今日热门赛事</a>
+        <a class="btn-ghost" href="#updates">查看最新赛果</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="visual-row">
+        <span class="visual-dot"></span>
+        <span class="visual-bar" style="flex:0.8;"></span>
+        <span class="visual-label">LIVE</span>
+      </div>
+      <div class="visual-row">
+        <span class="visual-dot green"></span>
+        <span class="visual-bar"></span>
+        <span class="visual-label">BO3</span>
+      </div>
+      <div class="visual-row">
+        <span class="visual-dot blue"></span>
+        <span class="visual-bar short"></span>
+        <span class="visual-label">赛后数据</span>
+      </div>
+      <div class="visual-row">
+        <span class="visual-dot" style="background:#facc15;"></span>
+        <span class="visual-bar" style="flex:0.5;"></span>
+        <span class="visual-label">高光集锦</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 三栏主内容区 -->
+<div class="container">
+  <div class="main-grid">
+    <!-- 左栏 -->
+    <aside class="left-sidebar" aria-label="频道与分类导航">
+      <div class="sidebar-block">
+        <h3>赛事频道</h3>
+        <ul class="channel-list">
+          <li><a href="#intro" class="active">全部内容</a></li>
+          <li><a href="#hot">今日热门对决</a></li>
+          <li><a href="#updates">实时赛果速递</a></li>
+          <li><a href="#categories">赛程分类</a></li>
+          <li><a href="#deep-dive">深度战术解析</a></li>
+          <li><a href="#guide">观赛指南</a></li>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#comments">社区评论</a></li>
+          <li><a href="#news">相关资讯</a></li>
+          <li><a href="#related">相关推荐</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-block">
+        <h3>标签索引</h3>
+        <div class="card-tags" style="gap:6px;">
+          <a href="#hot" class="tag">MOBA</a>
+          <a href="#hot" class="tag">FPS</a>
+          <a href="#hot" class="tag">选手转会</a>
+          <a href="#hot" class="tag">赛后复盘</a>
+          <a href="#hot" class="tag">高光操作</a>
+          <a href="#hot" class="tag">新秀观察</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 中栏：主要内容 -->
+    <main class="center-content" id="mainContent">
+
+      <!-- 1. 内容简介 -->
+      <section class="section-card" id="intro">
+        <h2 class="section-title">内容简介与平台定位</h2>
+        <div class="intro-text">
+          <p><strong>每日大赛推特</strong>是一个聚焦每日电竞赛事动态的内容聚合页面，面向关注赛程、赛果与选手表现的观众与玩家。这里汇集了当天的热门对局、选手高光操作以及社区讨论焦点，帮助你在信息流中快速定位值得观看的比赛与值得追踪的选手。</p>
+          <p>无论你是想了解今日赛程安排、寻找赛后复盘，还是想跟进选手转会与状态变化，都可以从热门内容推荐和实时动态板块入手。页面中的分类入口按照赛事类型与观赛场景划分，方便按需筛选。</p>
+          <p>对于习惯追更的观众，最新更新区域会呈现当日赛果与短评，而深度解析板块则从战术与数据角度拆解关键对局。体验指南说明如何高效使用分类筛选与页面目录；FAQ 围绕观赛与内容消费中的常见疑问展开；用户评论与相关资讯补充社区视角与外部动态。</p>
+          <p>每日大赛推特上的内容节奏紧凑，推荐优先关注带有“实时”标签的条目，并结合相关推荐中的类型词扩展阅读。页面所有示例数据仅用于呈现结构，不构成真实赛果或排名依据。</p>
+        </div>
+      </section>
+
+      <!-- 2. 热门内容推荐 -->
+      <section class="section-card" id="hot">
+        <h2 class="section-title">今日热门对决推荐</h2>
+        <p class="section-sub">从每日大赛推特中挑选出的高关注度赛事，含类型标签与看点摘要</p>
+        <div class="card-grid">
+          <article class="content-card">
+            <span class="card-type">MOBA</span>
+            <h3 class="card-title">星轨杯半决赛：NE vs 苍穹</h3>
+            <p class="card-desc">双方在决胜局围绕大龙展开长达三分钟的拉扯，新秀中单选手「青禾」的关键开团成为转折点。</p>
+            <div class="card-tags"><span class="tag">决胜局</span><span class="tag">新秀中单</span><span class="tag">团战复盘</span></div>
+            <div class="card-meta"><span>热度 9.2k</span><span>更新于 今日 14:30</span></div>
+          </article>
+          <article class="content-card">
+            <span class="card-type">FPS</span>
+            <h3 class="card-title">极光邀请赛：Vortex 让一追二</h3>
+            <p class="card-desc">Vortex 在首图失利后调整防守站位，狙击手「Ice」连续三回合首杀帮助队伍完成翻盘。</p>
+            <div class="card-tags"><span class="tag">让一追二</span><span class="tag">狙击手</span><span class="tag">防守调整</span></div>
+            <div class="card-meta"><span>热度 8.7k</span><span>更新于 今日 12:10</span></div>
+          </article>
+          <article class="content-card">
+            <span class="card-type">MOBA</span>
+            <h3 class="card-title">城市联赛：老将「河马」回归首秀</h3>
+            <p class="card-desc">休赛期后重返赛场的辅助选手河马，在首局使用洛打出多次关键控制，赛后采访谈及状态恢复。</p>
+            <div class="card-tags"><span class="tag">选手回归</span><span class="tag">辅助位</span><span class="tag">赛后采访</span></div>
+            <div class="card-meta"><span>热度 7.9k</span><span>更新于 今日 11:05</span></div>
+          </article>
+          <article class="content-card">
+            <span class="card-type">FPS</span>
+            <h3 class="card-title">新秀狙击手「Luna」登顶击杀榜</h3>
+            <p class="card-desc">年仅17岁的 Luna 在今日两场比赛中合计取得42次击杀，赛后数据面板显示其首杀成功率高达68%。</p>
+            <div class="card-tags"><span class="tag">新秀观察</span><span class="tag">击杀榜</span><span class="tag">数据面板</span></div>
+            <div class="card-meta"><span>热度 7.5k</span><span>更新于 今日 10:20</span></div>
+          </article>
+          <article class="content-card">
+            <span class="card-type">MOBA</span>
+            <h3 class="card-title">战术复盘：双传送体系如何破局</h3>
+            <p class="card-desc">结合昨日两场对局，分析双传送阵容在前期资源置换中的优势与视野盲区，附关键时间节点截图。</p>
+            <div class="card-tags"><span class="tag">战术体系</span><span class="tag">资源置换</span><span class="tag">视野控制</span></div>
+            <div class="card-meta"><span>热度 6.8k</span><span>更新于 今日 09:40</span></div>
+          </article>
+          <article class="content-card">
+            <span class="card-type">FPS</span>
+            <h3 class="card-title">赛后语音：Vortex 决胜局沟通实录</h3>
+            <p class="card-desc">官方放出决胜局队内语音，从防守转点到残局处理，可以听到指挥如何快速调整策略。</p>
+            <div class="card-tags"><span class="tag">队内语音</span><span class="tag">残局处理</span><span class="tag">指挥决策</span></div>
+            <div class="card-meta"><span>热度 6.2k</span><span>更新于 今日 08:55</span></div>
+          </article>
+        </div>
+        <div class="search-feedback" id="searchFeedback"></div>
+      </section>
+
+      <!-- 3. 最新更新 / 热门动态 -->
+      <section class="section-card" id="updates">
+        <h2 class="section-title">最新赛果与动态速递</h2>
+        <p class="section-sub">按时间倒序整理今日赛果与社区热点</p>
+        <ul class="update-list">
+          <li class="update-item"><span class="update-time">15:20</span><div class="update-body"><div class="update-name">星轨杯半决赛第二场：苍穹扳回一城</div><div class="update-summary">苍穹在蓝色方利用下路优势控下三条小龙，将大比分改写为1:1。</div></div></li>
+          <li class="update-item"><span class="update-time">14:10</span><div class="update-body"><div class="update-name">极光邀请赛：Vortex 晋级决赛</div><div class="update-summary">决胜图加时赛中 Ice 完成1v2残局，Vortex 以16:14险胜。</div></div></li>
+          <li class="update-item"><span class="update-time">13:05</span><div class="update-body"><div class="update-name">选手动态：打野「风间」确认转会</div><div class="update-summary">原战队官方发布公告，风间将加入新队伍备战下赛季，具体转会费未披露。</div></div></li>
+          <li class="update-item"><span class="update-time">11:40</span><div class="update-body"><div class="update-name">城市联赛今日赛程调整</div><div class="update-summary">原定19:00开赛的第二场因设备检修推迟至20:30，首场比赛时间不变。</div></div></li>
+          <li class="update-item"><span class="update-time">10:15</span><div class="update-body"><div class="update-name">新秀 Luna 赛后数据引热议</div><div class="update-summary">社区讨论其首杀成功率与对枪胜率，多位解说转发数据截图。</div></div></li>
+          <li class="update-item"><span class="update-time">09:30</span><div class="update-body"><div class="update-name">星轨杯今日首发名单公布</div><div class="update-summary">NE 维持原阵容，苍穹更换辅助选手，新阵容首次亮相。</div></div></li>
+          <li class="update-item"><span class="update-time">08:50</span><div class="update-body"><div class="update-name">极光邀请赛解说阵容公布</div><div class="update-summary">今日比赛将由三位资深解说共同带来，赛后设有复盘环节。</div></div></li>
+          <li class="update-item"><span class="update-time">08:10</span><div class="update-body"><div class="update-name">社区高光：残局1v3操作集锦</div><div class="update-summary">每日大赛推特上的热门片段，来自昨日城市联赛的一场残局处理。</div></div></li>
+        </ul>
+      </section>
+
+      <!-- 4. 分类入口 -->
+      <section class="section-card" id="categories">
+        <h2 class="section-title">按类型与场景分类</h2>
+        <p class="section-sub">点击分类快速定位你感兴趣的赛事内容</p>
+        <div class="category-grid">
+          <a href="#hot" class="category-item">MOBA 对局</a>
+          <a href="#hot" class="category-item">FPS 枪战</a>
+          <a href="#hot" class="category-item">选手转会</a>
+          <a href="#hot" class="category-item">赛后复盘</a>
+          <a href="#hot" class="category-item">新秀观察</a>
+          <a href="#hot" class="category-item">高光集锦</a>
+          <a href="#hot" class="category-item">赛程速递</a>
+          <a href="#hot" class="category-item">战术分析</a>
+        </div>
+      </section>
+
+      <!-- 5. 深度解析正文 -->
+      <section class="section-card deep-dive" id="deep-dive">
+        <h2 class="section-title">深度解析：今日赛事战术与选手表现</h2>
+        <p>今日的<strong>每日大赛推特</strong>上，两场半决赛与一场邀请赛构成了主要看点。从战术层面看，双传送体系与防守站位调整成为影响胜负的关键因素；从选手表现看，新秀与老将的碰撞带来了多个值得回味的瞬间。以下从三个角度展开分析。</p>
+        <h3>一、双传送体系的前期资源置换逻辑</h3>
+        <p>在星轨杯半决赛首局中，NE 选出了上单与中单双传送的阵容，试图通过边线压力换取中立资源。前十分钟内，NE 利用传送差控下两条小龙，但在峡谷先锋团战中因视野缺失被苍穹反打。这一体系的关键在于传送冷却时间的同步与边线兵线处理，一旦传送使用不同步，容易形成以少打多。</p>
+        <ul>
+          <li>传送同步率：双传送同时转好时，队伍可主动发起边线越塔或龙团。</li>
+          <li>视野布控：传送绕后需要至少两组深入视野作为支撑。</li>
+          <li>风险点：传送冷却期内的资源争夺能力明显下降。</li>
+        </ul>
+        <p>从赛后数据看，NE 在传送同步时段的经济领先达到1.2k，但在传送冷却窗口被苍穹追回并反超。这说明双传送体系并非无解，对手可以通过拉扯节奏制造时间差。</p>
+        <h3>二、FPS 防守站位调整的即时反馈</h3>
+        <p>极光邀请赛中，Vortex 在首图失利后迅速调整了防守站位，将狙击手从A区外撤至连接位，同时安排一名步枪手前压获取信息。这一调整在第二图立竿见影，Ice 连续三回合首杀帮助队伍建立人数优势。防守站位的核心在于信息获取与交叉火力的平衡，过度前压容易暴露侧翼，过于保守则丧失地图控制权。</p>
+        <p>观察<strong>每日大赛推特</strong>上的赛后讨论，多位观众提到 Vortex 的调整并非单纯换位，而是配合道具使用节奏的变化。例如在连接位多次使用烟雾弹封锁视野，为狙击手创造安全输出环境。这种细节层面的调整，往往比单纯更换选手更能带来即时效果。</p>
+        <h3>三、新秀与老将的状态对比</h3>
+        <p>今日比赛中，新秀 Luna 与老将河马的表现形成有趣对照。Luna 凭借反应速度与枪法在击杀榜上名列前茅，但在残局处理中仍有改进空间；河马则依靠经验与团战站位为队伍提供稳定控制，尽管个人数据并不突出。两者代表了不同的价值维度：前者提供爆发力，后者提供稳定性。</p>
+        <p>对于关注选手成长的观众，可以结合每日大赛推特上的高光片段与数据面板，对比不同场次的表现趋势。需要注意的是，单日数据不足以定义选手水平，长期观察更有参考意义。</p>
+        <p>综合来看，今日赛事的关键词是“调整”——无论是战术体系内的传送同步，还是防守站位的即时变化，亦或新老选手的状态起伏，都围绕临场调整能力展开。后续赛程中，这些调整能否延续，值得持续关注。</p>
+      </section>
+
+      <!-- 6. 体验指南 -->
+      <section class="section-card" id="guide">
+        <h2 class="section-title">观赛与使用指南</h2>
+        <p class="section-sub">快速了解如何利用页面结构追踪赛事</p>
+        <div class="guide-steps">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text"><h4>从热门推荐入手</h4><p>如果你只想看今日最值得关注的比赛，优先浏览热门卡片，每张卡片均标注类型与看点摘要。</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text"><h4>使用分类与标签筛选</h4><p>按 MOBA、FPS 或选手动态等标签定位内容，分类入口直接对应正文板块，点击即可跳转。</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text"><h4>关注实时动态板块</h4><p>最新更新区域按时间倒序排列赛果与短讯，适合在比赛间隙快速浏览。</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-text"><h4>利用页内目录与侧栏</h4><p>顶部目录与右侧热门条目可帮助你在长页面中快速跳转，移动端侧栏内容会置于正文之后。</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-text"><h4>扩展阅读路径</h4><p>相关推荐与相关资讯提供类型词扩展，适合在看完主内容后继续探索同方向赛事。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="section-card" id="faq">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-sub">围绕赛事观看与内容消费的疑问</p>
+        <details class="faq-item">
+          <summary>每日大赛推特上的赛程一般什么时候更新？</summary>
+          <div class="faq-answer">通常在比赛日前一晚或当日早晨更新赛程，具体时间以各赛事官方公告为准。页面中的最新动态板块会同步汇总时间调整信息。</div>
+        </details>
+        <details class="faq-item">
+          <summary>MOBA 和 FPS 赛事的内容可以分开筛选吗？</summary>
+          <div class="faq-answer">可以。分类入口中提供了 MOBA 对局、FPS 枪战等类型入口，点击后会定位到热门推荐与分类板块，方便按类型浏览。</div>
+        </details>
+        <details class="faq-item">
+          <summary>选手转会消息从哪里获取？</summary>
+          <div class="faq-answer">页面会汇总战队官方公告与社区讨论中的转会动态，以示例数据形式呈现。建议结合多个来源交叉确认。</div>
+        </details>
+        <details class="faq-item">
+          <summary>赛后复盘内容适合什么水平的观众看？</summary>
+          <div class="faq-answer">深度解析板块兼顾基础概念与战术细节，既适合刚接触赛事的新观众了解体系逻辑，也适合老观众回顾关键节点。</div>
+        </details>
+        <details class="faq-item">
+          <summary>新秀观察类内容多久出现一次？</summary>
+          <div class="faq-answer">新秀观察随赛事进程更新，通常在有新选手登场或数据表现突出时出现，没有固定周期。</div>
+        </details>
+        <details class="faq-item">
+          <summary>页面上的热度评分是真实数据吗？</summary>
+          <div class="faq-answer">页面中的热度、评分与评论均为示例数据，用于展示信息结构，不代表真实平台数据或官方排名。</div>
+        </details>
+      </section>
+
+      <!-- 8. 用户评论 -->
+      <section class="section-card" id="comments">
+        <h2 class="section-title">社区评论精选</h2>
+        <p class="section-sub">来自观众与玩家的观点摘录</p>
+        <div class="comment-list">
+          <div class="comment-item"><div class="comment-avatar">电</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">电竞老猫</span><span class="comment-date">今天 15:40</span></div><div class="comment-text">星轨杯那场双传送体系确实好看，前期资源置换思路清晰，可惜传送冷却期没稳住。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">追</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">追风少年</span><span class="comment-date">今天 15:22</span></div><div class="comment-text">Vortex 那个防守调整太关键了，Ice 的狙击枪感在线，决赛有得打。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">L</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">Luna观察员</span><span class="comment-date">今天 14:58</span></div><div class="comment-text">Luna 的枪法确实亮眼，不过残局选择还可以再稳一点，期待后续成长。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">河</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">河马粉丝团</span><span class="comment-date">今天 14:30</span></div><div class="comment-text">老将回归首秀拿到胜利，虽然数据不华丽，但几次关键控制很到位。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">战</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">战术板小李</span><span class="comment-date">今天 13:55</span></div><div class="comment-text">深度解析里提到的传送同步率概念很实用，之前看比赛没注意这个细节。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">路</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">路过看看</span><span class="comment-date">今天 13:20</span></div><div class="comment-text">最近转会消息有点多，希望页面能持续汇总，方便跟进。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">F</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">FPS爱好者</span><span class="comment-date">今天 12:48</span></div><div class="comment-text">极光邀请赛的残局语音挺有意思，指挥沟通很简洁。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">小</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">小飞侠</span><span class="comment-date">今天 12:15</span></div><div class="comment-text">分类入口挺方便，直接点 FPS 就能看到枪战内容，不用翻来翻去。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">数</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">数据帝</span><span class="comment-date">今天 11:50</span></div><div class="comment-text">今日击杀榜数据更新了，Luna 的首杀成功率确实突出，但样本还少。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">城</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">城市联赛观众</span><span class="comment-date">今天 11:12</span></div><div class="comment-text">赛程调整通知很及时，差点错过第二场。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">赛</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">赛后复盘员</span><span class="comment-date">今天 10:35</span></div><div class="comment-text">双传送体系的风险点总结得不错，但视野布控部分可以再展开讲讲。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">新</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">新来的观众</span><span class="comment-date">今天 09:58</span></div><div class="comment-text">刚关注赛事不久，指南里的步骤挺清晰的，先看热门再看复盘。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">高</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">高光收藏家</span><span class="comment-date">今天 09:20</span></div><div class="comment-text">残局1v3那个片段确实帅，已经收藏了。</div></div></div>
+          <div class="comment-item"><div class="comment-avatar">中</div><div class="comment-body"><div class="comment-meta"><span class="comment-name">中立观众</span><span class="comment-date">今天 08:45</span></div><div class="comment-text">整体内容更新挺快，不过部分数据没有标注来源，看的时候留意一下就好。</div></div></div>
+        </div>
+      </section>
+
+      <!-- 9. 相关资讯 -->
+      <section class="section-card" id="news">
+        <h2 class="section-title">相关资讯速览</h2>
+        <p class="section-sub">赛事周边与行业动态</p>
+        <div class="news-list">
+          <div class="news-item"><div class="news-title">星轨杯半决赛观赛人数创本季新高</div><div class="news-meta">2025-03-12 · 赛事数据</div><div class="news-summary">官方公布半决赛首日观赛峰值较小组赛增长约三成，移动端观看比例上升明显。</div></div>
+          <div class="news-item"><div class="news-title">极光邀请赛决赛场馆确定</div><div class="news-meta">2025-03-12 · 赛事公告</div><div class="news-summary">决赛将在本市电竞中心举行，门票信息预计本周内公布。</div></div>
+          <div class="news-item"><div class="news-title">城市联赛新增两支合作战队</div><div class="news-meta">2025-03-11 · 联赛动态</div><div class="news-summary">新加入的战队将参与下阶段常规赛，联赛规模进一步扩大。</div></div>
+          <div class="news-item"><div class="news-title">选手工会发布春季赛权益说明</div><div class="news-meta">2025-03-11 · 行业资讯</div><div class="news-summary">内容涉及赛程密度与休息安排，多家俱乐部表示将跟进落实。</div></div>
+          <div class="news-item"><div class="news-title">解说阵容公布：决赛将设双语解说</div><div class="news-meta">2025-03-10 · 赛事服务</div><div class="news-summary">决赛阶段新增英文解说流，方便不同语言观众观看。</div></div>
+          <div class="news-item"><div class="news-title">新秀训练营报名通道开启</div><div class="news-meta">2025-03-10 · 青训计划</div><div class="news-summary">面向16岁以上玩家开放，选拔通过者可进入俱乐部青训体系。</div></div>
+        </div>
+      </section>
+
+      <!-- 10. 相关推荐 -->
+      <section class="section-card" id="related">
+        <h2 class="section-title">相关推荐与扩展方向</h2>
+        <p class="section-sub">按类型与需求词扩展阅读</p>
+        <div class="related-grid">
+          <a href="#hot" class="related-tag">MOBA 团战复盘</a>
+          <a href="#hot" class="related-tag">FPS 残局处理</a>
+          <a href="#hot" class="related-tag">选手转会追踪</a>
+          <a href="#hot" class="related-tag">新秀数据观察</a>
+          <a href="#hot" class="related-tag">赛程时间提醒</a>
+          <a href="#hot" class="related-tag">高光操作集锦</a>
+          <a href="#hot" class="related-tag">防守站位分析</a>
+          <a href="#hot" class="related-tag">双传送体系</a>
+        </div>
+      </section>
+
+      <!-- 11. 精选内容/趋势观察 -->
+      <section class="section-card" id="trend">
+        <h2 class="section-title">趋势观察：今日赛事关键词</h2>
+        <p class="section-sub">从社区讨论与比赛数据中提炼的关注方向</p>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="border-left:3px solid #f97316; padding-left:16px;">
+            <h3 style="font-size:16px; font-weight:700; margin-bottom:4px;">“调整能力”成为高频词</h3>
+            <p style="color:var(--muted); font-size:14px;">无论是战术体系内的传送同步，还是防守站位的即时变化，临场调整能力在今日讨论中反复出现。</p>
+          </div>
+          <div style="border-left:3px solid #3b82f6; padding-left:16px;">
+            <h3 style="font-size:16px; font-weight:700; margin-bottom:4px;">新秀选手关注度上升</h3>
+            <p style="color:var(--muted); font-size:14px;">Luna 等高光新秀带动了“新秀观察”类内容的阅读量，观众对年轻选手的长期表现保持兴趣。</p>
+          </div>
+          <div style="border-left:3px solid #22c55e; padding-left:16px;">
+            <h3 style="font-size:16px; font-weight:700; margin-bottom:4px;">赛后数据面板需求增加</h3>
+            <p style="color:var(--muted); font-size:14px;">社区讨论中引用数据面板的频率上升，首杀成功率、对枪胜率等指标成为分析依据。</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 右栏 -->
+    <aside class="right-sidebar" aria-label="辅助阅读入口">
+      <div class="right-block">
+        <h3>页内目录</h3>
+        <ul class="toc-list">
+          <li><a href="#intro">内容简介</a></li>
+          <li><a href="#hot">热门对决</a></li>
+          <li><a href="#updates">最新动态</a></li>
+          <li><a href="#categories">分类入口</a></li>
+          <li><a href="#deep-dive">深度解析</a></li>
+          <li><a href="#guide">观赛指南</a></li>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#comments">社区评论</a></li>
+          <li><a href="#news">相关资讯</a></li>
+          <li><a href="#related">相关推荐</a></li>
+        </ul>
+      </div>
+      <div class="right-block">
+        <h3>热门条目</h3>
+        <ul class="hot-list">
+          <li class="hot-item"><span class="hot-rank">1</span><div><div class="hot-title">星轨杯半决赛：NE vs 苍穹</div><div class="hot-meta">热度 9.2k · 今日</div></div></li>
+          <li class="hot-item"><span class="hot-rank">2</span><div><div class="hot-title">极光邀请赛：Vortex 让一追二</div><div class="hot-meta">热度 8.7k · 今日</div></div></li>
+          <li class="hot-item"><span class="hot-rank">3</span><div><div class="hot-title">新秀 Luna 登顶击杀榜</div><div class="hot-meta">热度 7.5k · 今日</div></div></li>
+          <li class="hot-item"><span class="hot-rank">4</span><div><div class="hot-title">老将河马回归首秀</div><div class="hot-meta">热度 7.9k · 今日</div></div></li>
+          <li class="hot-item"><span class="hot-rank">5</span><div><div class="hot-title">双传送体系战术复盘</div><div class="hot-meta">热度 6.8k · 今日</div></div></li>
+        </ul>
+      </div>
+      <div class="right-block">
+        <h3>延伸阅读</h3>
+        <ul class="extend-list">
+          <li><a href="#deep-dive">MOBA 双传送体系解析</a></li>
+          <li><a href="#deep-dive">FPS 防守站位调整</a></li>
+          <li><a href="#comments">观众如何看待新秀表现</a></li>
+          <li><a href="#news">赛事周边资讯汇总</a></li>
+          <li><a href="#faq">赛程与观赛常见问题</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- 页尾 -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-word">每日大赛推特</span>
+        <p>聚焦每日电竞赛事速递、选手动态与战术解析，为观众提供清晰的内容导航与观赛参考。</p>
+      </div>
+      <div class="footer-col">
+        <h4>赛事频道</h4>
+        <ul>
+          <li><a href="#hot">热门对决</a></li>
+          <li><a href="#updates">实时赛果</a></li>
+          <li><a href="#categories">分类入口</a></li>
+          <li><a href="#deep-dive">深度解析</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>社区与帮助</h4>
+        <ul>
+          <li><a href="#comments">用户评论</a></li>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#guide">观赛指南</a></li>
+          <li><a href="#related">相关推荐</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>资讯与动态</h4>
+        <ul>
+          <li><a href="#news">相关资讯</a></li>
+          <li><a href="#trend">趋势观察</a></li>
+          <li><a href="#intro">内容简介</a></li>
+          <li><a href="#top">返回顶部</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 每日大赛推特 · 内容示例页面</span>
+      <span>部分内容为示例数据，仅用于展示页面结构</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // 搜索功能：本地筛选热门卡片与更新条目，提供无结果反馈
+    var searchInput = document.getElementById('searchInput');
+    var searchBtn = document.getElementById('searchBtn');
+    var feedback = document.getElementById('searchFeedback');
+
+    function performSearch() {
+      var keyword = (searchInput.value || '').trim().toLowerCase();
+      var cards = document.querySelectorAll('.content-card');
+      var updates = document.querySelectorAll('.update-item');
+      var visibleCount = 0;
+
+      if (!keyword) {
+        // 清空搜索时恢复显示
+        cards.forEach(function(c) { c.style.display = ''; });
+        updates.forEach(function(u) { u.style.display = ''; });
+        if (feedback) feedback.textContent = '';
+        return;
+      }
+
+      cards.forEach(function(card) {
+        var text = card.textContent.toLowerCase();
+        if (text.includes(keyword)) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      updates.forEach(function(item) {
+        var text = item.textContent.toLowerCase();
+        if (text.includes(keyword)) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (feedback) {
+        if (visibleCount === 0) {
+          feedback.textContent = '没有找到匹配“' + searchInput.value.trim() + '”的内容，请尝试其他关键词。';
+          feedback.style.display = 'block';
+        } else {
+          feedback.textContent = '共找到 ' + visibleCount + ' 条相关结果。';
+          feedback.style.display = 'block';
+        }
+      }
+    }
+
+    if (searchBtn) {
+      searchBtn.addEventListener('click', performSearch);
+    }
+    if (searchInput) {
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          performSearch();
+        }
+      });
+    }
+    // 页面加载后确认反馈区域隐藏
+    if (feedback) feedback.style.display = 'none';
+  })();
+</script>
+</body>
+  </html>
